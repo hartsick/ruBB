@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="h-full bg-gray-100">
   <head>
     <title>Forum</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -11,7 +11,14 @@
     <%= javascript_pack_tag 'application' %>
   </head>
 
-  <body class="bg-black text-white font-sans">
-    <%= yield %>
+  <body class="h-full">
+    <div class="min-h-full">
+      <nav class="bg-gray-800">
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+      </nav>
+      
+      <%= yield %>
+    </div>
   </body>
 </html>

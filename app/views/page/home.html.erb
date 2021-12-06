@@ -1,2 +1,6 @@
-<h1>Page#home</h1>
-<p>Find me in app/views/page/home.html.erb</p>
+<h1>piglet's house</h1>
+<div>
+    <p>welcome</p>
+    <%= link_to "Sign in", new_user_session_path, class: "btn-blue" %>
+    <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "btn-blue" %>
+</div>
