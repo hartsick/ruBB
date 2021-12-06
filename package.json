@@ -3,7 +3,12 @@
   "private": true,
   "dependencies": {
     "@rails/ujs": "^6.0.0",
-    "@rails/webpacker": "5.4.3",
+    "@rails/webpacker": "5.4.0",
+    "autoprefixer": "^9",
+    "postcss": "^7",
+    "postcss-loader": "^4.0.3",
+    "sass": "^1.32.7",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "webpack": "^4.46.0",
     "webpack-cli": "^3.3.12"
   },

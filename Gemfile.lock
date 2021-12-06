@@ -148,16 +148,6 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.10.3)
-    sass-rails (6.0.0)
-      sassc-rails (~> 2.1, >= 2.1.1)
-    sassc (2.4.0)
-      ffi (~> 1.9)
-    sassc-rails (2.1.2)
-      railties (>= 4.0.0)
-      sassc (>= 2.0)
-      sprockets (> 3.0)
-      sprockets-rails
-      tilt
     semantic_range (3.0.0)
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
@@ -167,7 +157,6 @@ GEM
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     thor (1.1.0)
-    tilt (2.0.10)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     web-console (4.2.0)
@@ -197,10 +186,9 @@ DEPENDENCIES
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.4, >= 6.1.4.1)
   rspec-rails (~> 5.0.0)
-  sass-rails (>= 6)
   tzinfo-data
   web-console (>= 4.1.0)
-  webpacker (~> 5.0)
+  webpacker (~> 5.4.0)
 
 RUBY VERSION
    ruby 3.0.3p157
