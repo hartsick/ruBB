@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Users", type: :system do
+RSpec.describe "Account management", type: :system do
   before do
     driven_by(:rack_test)
 
@@ -16,6 +16,6 @@ RSpec.describe "Users", type: :system do
     fill_in 'Password', with: 'password1234'
     click_on 'Log in'
 
-    expect(page).to have_content('welcome')
+    expect(page).to have_content('All topics')
   end
 end

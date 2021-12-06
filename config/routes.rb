@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   
-  get 'page/home'
-  root 'page#home'
+  resources :topics, only: %i[index new create show]
+
+  root 'topics#index'
 end

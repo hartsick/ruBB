@@ -1,0 +1,9 @@
+<h1>New thread</h1>
+<%= form_with model: @topic do |f| %>
+    <%= f.label :title, "Title" %>
+    <%= f.text_field :title %>
+    <%= f.label :body, "Body" %>
+    <%= f.text_field :body %>
+
+    <%= f.submit "Post" %>
+<% end %>
