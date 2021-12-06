@@ -1,0 +1,35 @@
+name: tests
+
+on: [push]
+
+jobs:
+  rspec:
+    name: Rspec 
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports: ["5432:5432"]
+        env:
+          POSTGRES_DB: forum_test
+          POSTGRES_USER: forum
+          POSTGRES_PASSWORD: postgres
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: ./.github/actions/setup-project
+
+      - uses: ./.github/actions/run-server
+
+      # this is needed again because run-server removes devDependencies during asset compilation
+      - name: Install yarn dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Run rspec
+        run: bundle exec rspec --format RSpec::Github::Formatter --tag ~skip
