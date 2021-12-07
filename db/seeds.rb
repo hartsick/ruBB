@@ -6,7 +6,13 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-user = User.find_or_initialize_by(email: "piglet@dog.com")
-user.update(password: "pigletisacutedog")
+poster = User.find_or_initialize_by(email: "piglet@dog.com")
+poster.update(password: "pigletisacutedog")
 
-Topic.create(title: "wow how cute am I", body: "no seriously", creator: user)
+viewer = User.find_or_initialize_by(email: "annie@pup.com")
+viewer.update(password: "pigletisacutedog")
+
+topic = Topic.create(title: "wow how cute am I", author: poster)
+3.times do |i|
+    Post.create(body: "#{i}x the cute", author: i.odd? ? poster : viewer)
+end

@@ -1,3 +1,35 @@
 <h1><%= @topic.title %></h1>
-<div><%= @topic.body %></div>
+<h2><%= @topic.author.email %></h2>
+
+<% @topic.posts.select{|p| p.persisted? }.each_with_index do |post, index| %>
+    <% if index.zero? %>
+        <div class="py-1 my-1">
+            <div><%= post.body %></div>
+            <div><%= time_ago_in_words(post.created_at) %></div>
+        </div>
+    <% else %>
+        <div class="bg-blue-100 py-1 my-1">
+            <div><%= post.body %></div>
+            <div><%= time_ago_in_words(post.created_at) %></div>
+            <div><%= post.author.email %></div>
+        </div>
+    <% end %>
+
+<% end %>
+
+<% if @new_post.errors.any? %>
+<ul class="bg-red-500">
+    <% @new_post.errors.full_messages.each do |message|%>
+        <li><%= message %></li>
+    <%end%>
+</ul>
+<%end%>
+
+<%= form_with(model: @new_post, url: [@topic], method: :put) do |f| %>
+    <%= f.label :body, "Body" %>
+    <%= f.text_field :body %>
+
+    <%= f.submit "Reply" %>
+<% end %>
+
 <%= link_to "See all topics", topics_path %>

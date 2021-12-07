@@ -1,9 +1,20 @@
 <h1>New thread</h1>
 <%= form_with model: @topic do |f| %>
+    <% if @topic.errors.any? %>
+        <ul class="bg-red-500">
+            <% @topic.errors.full_messages.each do |message|%>
+                <li><%= message %></li>
+            <%end%>
+        </ul>
+    <%end%>
+
     <%= f.label :title, "Title" %>
     <%= f.text_field :title %>
-    <%= f.label :body, "Body" %>
-    <%= f.text_field :body %>
+    
+    <%= f.fields_for :posts do |ff| %>
+        <%= ff.label :body, "Body" %>
+        <%= ff.text_field :body %>
+    <% end %>
 
     <%= f.submit "Post" %>
 <% end %>

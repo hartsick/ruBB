@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   
-  resources :topics, only: %i[index new create show]
+  resources :topics, except: %i[edit delete]
 
   root 'topics#index'
 end

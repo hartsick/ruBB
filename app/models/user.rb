@@ -6,4 +6,5 @@ class User < ApplicationRecord
          :trackable, :lockable
 
   has_many :created_topics, class_name: 'Topic', foreign_key: 'creator_id'
+  has_many :posts
 end
