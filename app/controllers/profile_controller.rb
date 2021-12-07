@@ -1,5 +1,4 @@
 class ProfileController < ApplicationController
-    before_action :authenticate_user!
     before_action :verify_own_profile!, except: %i[show mine]
 
     class NotOwnAccountException < StandardError; end

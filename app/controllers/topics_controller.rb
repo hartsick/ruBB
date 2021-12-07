@@ -1,6 +1,4 @@
 class TopicsController < ApplicationController
-    before_action :authenticate_user!
-
     def index
         @topics = Topic.all.recently_updated
     end
