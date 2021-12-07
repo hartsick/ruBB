@@ -1,7 +1,17 @@
 <h1>All topics</h1>
-<% @topics.each do |topic| %>
-    <div>
-        <%= topic.title %> | <%= topic.creator.email %> | <%= time_ago_in_words(topic.created_at) %>
-    </div>
-<% end %>
+
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Creator</th>
+        <th>Created at</th>
+    </tr>
+    <% @topics.each do |topic| %>
+        <tr>
+            <td><%= topic.title %></td>
+            <td><%= topic.creator.email %></td>
+            <td><%= time_ago_in_words(topic.created_at) %></td>
+        </tr>
+    <% end %>
+</table>
 <%= link_to "New topic", new_topic_path, class: "btn" %>
