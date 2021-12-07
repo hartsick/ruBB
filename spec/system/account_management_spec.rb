@@ -16,7 +16,7 @@ RSpec.describe "Account management", type: :system do
     fill_in 'Password', with: 'password1234'
     click_on 'Log in'
 
-    expect(page).to have_content('All topics')
+    expect(page).to have_content('all topics')
 
     click_on 'my profile'
 

@@ -15,16 +15,16 @@ RSpec.describe "Creating and viewing topics", type: :system do
 
     expect(page).to have_content ''
 
-    click_on 'New topic'
+    click_on 'new topic'
 
-    fill_in 'Title', with: 'post your dogs'
-    fill_in 'Body', with: "here is a text description of Pig since images aren't supported"
-    click_on 'Post'
+    fill_in 'title', with: 'post your dogs'
+    fill_in 'body', with: "here is a text description of Pig since images aren't supported"
+    click_on 'post'
 
     expect(page).to have_content 'post your dogs'
     click_on 'See all topics'
 
-    expect(page).to have_content 'All topics'
+    expect(page).to have_content 'all topics'
     expect(page).to have_content 'post your dogs'
 
     logout
