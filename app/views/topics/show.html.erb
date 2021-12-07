@@ -27,7 +27,7 @@
 
 <%= form_with(model: @new_post, url: [@topic], method: :put) do |f| %>
     <%= f.label :body, "Body" %>
-    <%= f.text_field :body %>
+    <%= f.text_area :body %>
 
     <%= f.submit "Reply" %>
 <% end %>

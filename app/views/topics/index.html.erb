@@ -1,19 +1,19 @@
-<h1>All topics</h1>
+<h1 class="text-lg">all topics</h1>
 
-<table>
-    <tr>
-        <th>Title</th>
-        <th>Author</th>
-        <th># Posts</th>
-        <th>Most recent post</th>
+<table class="w-full">
+    <tr class="py-1 border-b-2 border-yellow-100 text-left">
+        <th class="pr-3 w-6/12">title</th>
+        <th class="px-3 w-2/12">author</th>
+        <th class="px-3 w-1/12">#</th>
+        <th class="pl-3 w-3/12">most recent post</th>
     </tr>
     <% @topics.each do |topic| %>
-        <tr>
-            <td><%= link_to topic.title, topic_path(topic) %></td>
-            <td><%= link_to topic.author.email, profile_path(topic.author) %></td>
-            <td><%= topic.posts.count %></td>
-            <td><%= time_ago_in_words(topic.posts.last.created_at) %></td>
+        <tr class="py-1 border-b-2 border-yellow-100">
+            <td class="pr-3 w-6/12"><%= link_to topic.title, topic_path(topic) %></td>
+            <td class="px-3 w-2/12"><%= link_to topic.author.email, profile_path(topic.author) %></td>
+            <td class="px-3 w-1/12"><%= topic.posts.count %></td>
+            <td class="pl-3 w-3/12"><%= time_ago_in_words(topic.posts.last.created_at) %></td>
         </tr>
     <% end %>
 </table>
-<%= link_to "New topic", new_topic_path, class: "btn" %>
+<%= link_to "new topic", new_topic_path, class: "btn" %>

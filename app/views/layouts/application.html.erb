@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="h-full bg-gray-100">
+<html class="h-full bg-yellow-600">
   <head>
     <title>Forum</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -12,19 +12,22 @@
   </head>
 
   <body class="h-full">
-    <div class="min-h-full py-16">
-      <nav class="bg-gray-800 text-white">
-        <p class="bg-green-200 text-black"><%= notice %></p>
-        <p class="bg-yellow-200 text-black"><%= alert %></p>
-      </nav>
-      
-      <% if user_signed_in? %>
-        <%= link_to 'my profile', my_profile_path %>
-        <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "btn-blue" %>
-      <% else %>
-        <%= link_to "Sign in", new_user_session_path, class: "btn-blue" %>
-      <% end %>
-
+    <nav class="w-full bg-yellow-200 py-1 px-1 flex justify-between">
+      <%= link_to 'home', root_path %>
+      <div>
+        <% if user_signed_in? %>
+          <%= link_to 'my profile', my_profile_path, class: 'px-1' %>
+          <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "btn-blue px-1" %>
+        <% else %>
+          <%= link_to "Sign in", new_user_session_path, class: "btn-blue" %>
+        <% end %>
+      </div>
+    </nav>
+    <div class="w-full">
+      <p class="bg-green-200 text-black"><%= notice %></p>
+      <p class="bg-yellow-100 text-black"><%= alert %></p>
+    </div>
+    <div class="py-5 px-1">
       <%= yield %>
     </div>
   </body>

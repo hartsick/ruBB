@@ -1,4 +1,4 @@
-<h1>New thread</h1>
+<h1 class="text-lg">new topic</h1>
 <%= form_with model: @topic do |f| %>
     <% if @topic.errors.any? %>
         <ul class="bg-red-500">
@@ -8,13 +8,13 @@
         </ul>
     <%end%>
 
-    <%= f.label :title, "Title" %>
-    <%= f.text_field :title %>
+    <%= f.label :title, "title", class: "block font-bold" %>
+    <%= f.text_field :title, class: "appearance-none border rounded w-6/12 py-1 px-1 mb-3" %>
     
     <%= f.fields_for :posts do |ff| %>
-        <%= ff.label :body, "Body" %>
-        <%= ff.text_field :body %>
+        <%= ff.label :body, "body", class: "block font-bold" %>
+        <%= ff.text_area :body, class: "form-textarea appearance-none border rounded w-6/12 py-1 px-1 mb-3" %>
     <% end %>
 
-    <%= f.submit "Post" %>
+    <%= f.submit "post", class: "block btn" %>
 <% end %>
