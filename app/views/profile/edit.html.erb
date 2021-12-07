@@ -1,0 +1,9 @@
+<h1> Profile for: <%= @profile.user.email %></h1>
+<div>
+    <%= form_with model: @profile do |f| %>
+        <%= f.label :about_me, 'favorite food' %>
+        <%= f.text_field :about_me %>
+
+        <%= f.submit 'update' %>
+    <% end %>
+</div>

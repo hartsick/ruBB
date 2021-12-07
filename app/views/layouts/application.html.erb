@@ -19,6 +19,7 @@
       </nav>
       
       <% if user_signed_in? %>
+        <%= link_to 'my profile', my_profile_path %>
         <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "btn-blue" %>
       <% else %>
         <%= link_to "Sign in", new_user_session_path, class: "btn-blue" %>

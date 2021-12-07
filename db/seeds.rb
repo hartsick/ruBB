@@ -12,7 +12,11 @@ poster.update(password: "pigletisacutedog")
 viewer = User.find_or_initialize_by(email: "annie@pup.com")
 viewer.update(password: "pigletisacutedog")
 
-topic = Topic.create(title: "wow how cute am I", author: poster)
+topic_1 = Topic.create(title: "wow how cute am I", author: poster)
+topic_2 = Topic.create(title: "let's talk about piglet", author: viewer)
+
 3.times do |i|
-    Post.create(body: "#{i}x the cute", author: i.odd? ? poster : viewer)
+    Post.create(body: "#{i}x the cute", author: i.odd? ? poster : viewer, topic: topic_1)
 end
+
+Post.create(body: "don't mind if I do", author: poster)

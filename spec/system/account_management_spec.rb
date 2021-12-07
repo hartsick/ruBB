@@ -17,5 +17,14 @@ RSpec.describe "Account management", type: :system do
     click_on 'Log in'
 
     expect(page).to have_content('All topics')
+
+    click_on 'my profile'
+
+    click_on 'edit'
+
+    fill_in 'favorite food', with: 'country ham'
+    click_on 'update'
+
+    expect(page).to have_content('country ham')
   end
 end

@@ -1,0 +1,8 @@
+<h1> Profile for: <%= @profile.user.email %></h1>
+<div>
+    <%= @profile.about_me %>
+</div>
+
+<% if my_profile? %>
+    <%= link_to "edit my profile", edit_profile_path(@profile) %>
+<% end %>

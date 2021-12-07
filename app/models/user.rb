@@ -5,6 +5,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :trackable, :lockable
 
+  has_one :profile
+
   has_many :created_topics, class_name: 'Topic', foreign_key: 'creator_id'
   has_many :posts
+
+  before_create { build_profile }
 end
