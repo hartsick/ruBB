@@ -7,8 +7,8 @@ class User < ApplicationRecord
 
   has_one :profile
 
-  has_many :created_topics, class_name: 'Topic', foreign_key: 'creator_id'
-  has_many :posts
+  has_many :created_topics, class_name: 'Topic', foreign_key: 'author_id'
+  has_many :posts, foreign_key: 'author_id'
 
   before_create { build_profile }
 end
