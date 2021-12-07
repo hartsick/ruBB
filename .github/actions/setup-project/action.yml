@@ -9,6 +9,9 @@ inputs:
     description: DATABASE_URL to set
     required: false
     default: postgres://forum:postgres@localhost:5432/forum_test
+outputs:
+  database_url:
+    value: ${{ inputs.database_url }}
 runs:
   using: composite
   steps:

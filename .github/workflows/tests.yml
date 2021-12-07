@@ -23,13 +23,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: ./.github/actions/setup-project
-
-      - uses: ./.github/actions/run-server
-
-      # this is needed again because run-server removes devDependencies during asset compilation
-      - name: Install yarn dependencies
-        run: yarn install --frozen-lockfile
+      - id: setup-project
+        uses: ./.github/actions/setup-project
 
       - name: Run rspec
+        env:
+          DATABASE_URL: ${{ steps.setup-project.outputs.database_url }}
         run: bundle exec rspec --format RSpec::Github::Formatter --tag ~skip
