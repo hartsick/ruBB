@@ -8,6 +8,8 @@ gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
 gem 'webpacker', '~> 5.4.0'
 gem 'devise'
+gem "sentry-ruby"
+gem "sentry-rails"
 
 gem 'bootsnap', '>= 1.4.4', require: false
 
