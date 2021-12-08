@@ -1,0 +1,7 @@
+<% if errors.any? %>
+    <ul class="bg-red-500 py-2">
+        <% errors.full_messages.each do |message|%>
+            <li><%= message %></li>
+        <% end %>
+    </ul>
+<% end %>

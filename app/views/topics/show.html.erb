@@ -20,15 +20,10 @@
     <% end %>
 </div>
 
-<% if @new_post.errors.any? %>
-<ul class="bg-red-500 py-2">
-    <% @new_post.errors.full_messages.each do |message|%>
-        <li><%= message %></li>
-    <%end%>
-</ul>
-<%end%>
 
 <%= form_with(model: @new_post, url: [@topic], method: :put, class: "py-2") do |f| %>
+    <%= render 'shared/errors', errors: @new_post.errors %>
+
     <%= f.label :body, "body", class: "block font-semibold" %>
     <%= f.text_area :body, class: "form-textarea border-none w-6/12 py-1 px-1 mb-3 bg-yellow-100" %>
 

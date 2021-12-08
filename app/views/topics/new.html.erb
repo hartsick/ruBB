@@ -1,19 +1,13 @@
 <h1 class="text-lg">new topic</h1>
-<%= form_with model: @topic do |f| %>
-    <% if @topic.errors.any? %>
-        <ul class="bg-red-500">
-            <% @topic.errors.full_messages.each do |message|%>
-                <li><%= message %></li>
-            <%end%>
-        </ul>
-    <%end%>
+<%= form_with model: @topic, class: "py-2" do |f| %>
+    <%= render 'shared/errors', errors: @topic.errors if @topic.errors.any? %>
 
-    <%= f.label :title, "title", class: "block font-bold" %>
-    <%= f.text_field :title, class: "appearance-none border rounded w-6/12 py-1 px-1 mb-3" %>
+    <%= f.label :title, "title", class: "block font-semibold" %>
+    <%= f.text_field :title, class: "border-none w-6/12 py-1 px-1 mb-3 bg-yellow-100" %>
     
     <%= f.fields_for :posts do |ff| %>
-        <%= ff.label :body, "body", class: "block font-bold" %>
-        <%= ff.text_area :body, class: "form-textarea appearance-none border rounded w-6/12 py-1 px-1 mb-3" %>
+        <%= ff.label :body, "body", class: "block font-semibold" %>
+        <%= ff.text_area :body, class: "form-textarea border-none w-6/12 py-1 px-1 mb-3 bg-yellow-100" %>
     <% end %>
 
     <%= f.submit "post", class: "block btn" %>
