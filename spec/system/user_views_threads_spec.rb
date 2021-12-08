@@ -35,8 +35,8 @@ RSpec.describe "Creating and viewing topics", type: :system do
     click_on 'post your dogs'
     expect(page).to have_content 'post your dogs'
 
-    fill_in 'body', with: 'thanks I appreciate it'
-    click_on 'reply'
+    fill_in 'reply', with: 'thanks I appreciate it'
+    click_on 'post'
 
     click_on 'see all topics'
 

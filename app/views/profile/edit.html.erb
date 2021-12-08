@@ -1,7 +1,7 @@
-<h1 class="text-lg">editing <%= @profile.user.email %></h1>
+<h1 class="text-lg">editing <%= @profile.user.username %></h1>
 <div class="text-med text-xs"><%= @profile.user.posts.count %> posts</div>
 <div class="py-3">
-    <%= form_with model: @profile do |f| %>
+    <%= form_with model: @profile, url: profile_path(@profile.user) do |f| %>
         <%= render 'shared/errors', errors: @profile.errors %>
 
         <%= f.label :about_me, 'favorite food', class: "block font-semibold" %>

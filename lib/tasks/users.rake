@@ -6,10 +6,13 @@ namespace :users do
             puts "Email: " unless args[:email].present?
             email = STDIN.gets.strip
         end
+        puts "Username: "
+        username = STDIN.gets.strip
+
         puts "Password: "
         password = STDIN.gets.strip
 
-        user = User.create(email: email, password: password)
-        puts "User created with email #{user.email}"
+        user = User.create(email: email, username: username, password: password)
+        puts "User created with email '#{user.email}' and username '#{user.username}'"
     end
 end

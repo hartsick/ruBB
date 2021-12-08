@@ -6,7 +6,7 @@ class ProfileController < ApplicationController
     rescue_from NotOwnAccountException, with: :user_not_authorized
 
     def show
-        @profile = User.find(params[:id]).profile
+        @profile = User.find_by_username(params[:username]).profile
     end
 
     def mine
@@ -16,11 +16,11 @@ class ProfileController < ApplicationController
     end
 
     def edit
-        @profile = User.find(params[:id]).profile
+        @profile = User.find_by_username(params[:username]).profile
     end
 
     def update
-        @profile = User.find(params[:id]).profile
+        @profile = User.find_by_username(params[:username]).profile
 
         if @profile.update(profile_params)
             redirect_to my_profile_path
@@ -37,7 +37,7 @@ class ProfileController < ApplicationController
     end
 
     def verify_own_profile!
-        raise NotOwnAccountException unless current_user == User.find(params[:id])
+        raise NotOwnAccountException unless current_user == User.find_by_username(params[:username])
     end
 
     def profile_params

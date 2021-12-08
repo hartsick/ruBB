@@ -10,7 +10,7 @@
     <% @topics.each do |topic| %>
         <tr class="py-1 border-b-2 border-yellow-100">
             <td class="pr-3 w-6/12"><%= link_to topic.title, topic_path(topic) %></td>
-            <td class="px-3 w-2/12"><%= link_to topic.author.email, profile_path(topic.author) %></td>
+            <td class="px-3 w-2/12"><%= link_to topic.author.username, profile_path(topic.author) %></td>
             <td class="px-3 w-1/12"><%= topic.posts.count %></td>
             <td class="pl-3 w-3/12"><%= time_ago_in_words(topic.posts.last.created_at) %></td>
         </tr>

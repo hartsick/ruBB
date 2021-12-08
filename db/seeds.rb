@@ -7,16 +7,19 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 poster = User.find_or_initialize_by(email: "piglet@dog.com")
-poster.update(password: "pigletisacutedog")
+poster.update!(username: "piglet", password: "pigletisacutedog")
+pp "Created user with email #{poster.email}"
 
 viewer = User.find_or_initialize_by(email: "annie@pup.com")
-viewer.update(password: "pigletisacutedog")
+viewer.update!(username: "annie", password: "pigletisacutedog")
+pp "Created user with email #{viewer.email}"
 
-topic_1 = Topic.create(title: "wow how cute am I", author: poster)
-topic_2 = Topic.create(title: "let's talk about piglet", author: viewer)
+topic_1 = Topic.create!(title: "wow how cute am I", author: poster)
+topic_2 = Topic.create!(title: "let's talk about piglet", author: viewer)
 
 3.times do |i|
-    Post.create(body: "#{i}x the cute", author: i.odd? ? poster : viewer, topic: topic_1)
+    Post.create!(body: "#{i}x the cute", author: i.odd? ? poster : viewer, topic: topic_1)
 end
 
-Post.create(body: "don't mind if I do", author: poster)
+Post.create!(body: "don't mind if I do", author: poster, topic: topic_2)
+pp "Created some topics with replies"
