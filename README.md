@@ -1,5 +1,11 @@
 # README
 
+A very minimal Rails-based forum for friends
+
+Currently a work-in-progress that aims to be like [pgboard]() but in active development, and with even less features.
+
+## README TK
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
