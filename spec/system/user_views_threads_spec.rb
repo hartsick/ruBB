@@ -28,7 +28,6 @@ RSpec.describe "Creating and viewing topics", type: :system do
     expect(page).to have_content 'post your dogs'
 
     logout
-
     sign_in viewer
 
     visit '/'

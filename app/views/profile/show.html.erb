@@ -1,9 +1,9 @@
-<h1> Profile for: <%= @profile.user.email %></h1>
-<div><%= @profile.user.posts.count %> posts</div>
-<div>
+<h1 class="text-lg"><%= @profile.user.email %></h1>
+<div class="text-med text-xs"><%= @profile.user.posts.count %> posts</div>
+<div class="py-3 whitespace-pre-line">
     <%= @profile.about_me %>
 </div>
 
 <% if my_profile? %>
-    <%= link_to "edit my profile", edit_profile_path(@profile) %>
+    <%= link_to "edit my profile", edit_profile_path(@profile), class: "py-1 link" %>
 <% end %>

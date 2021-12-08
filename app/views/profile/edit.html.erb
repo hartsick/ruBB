@@ -1,9 +1,10 @@
-<h1> Profile for: <%= @profile.user.email %></h1>
-<div>
+<h1 class="text-lg">editing <%= @profile.user.email %></h1>
+<div class="text-med text-xs"><%= @profile.user.posts.count %> posts</div>
+<div class="py-3">
     <%= form_with model: @profile do |f| %>
-        <%= f.label :about_me, 'favorite food' %>
-        <%= f.text_field :about_me %>
+        <%= f.label :about_me, 'favorite food', class: "block font-semibold" %>
+        <%= f.text_area :about_me, class: "form-textarea border-none w-6/12 py-1 px-1 mb-3 bg-yellow-100" %>
 
-        <%= f.submit 'update' %>
+        <%= f.submit 'update', class: "block btn" %>
     <% end %>
 </div>

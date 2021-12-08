@@ -5,7 +5,7 @@
     <% @topic.posts.select{|p| p.persisted? }.each_with_index do |post, index| %>
         <% if index.zero? %>
             <div class="py-3">
-                <div class="px-1"><%= post.body %></div>
+                <div class="px-1 whitespace-pre-line"><%= post.body %></div>
             </div>
         <% else %>
             <div class="bg-yellow-500 py-1 px-2 my-1">
@@ -13,7 +13,7 @@
                     <div class="text-sm font-medium"><%= link_to post.author.email, profile_path(@topic.author) %></div>
                     <div class="text-xs text-yellow-900"><%= time_ago_in_words(post.created_at) %></div>
                 </div>
-                <div><%= post.body %></div>
+                <div class="whitespace-pre-line"><%= post.body %></div>
             </div>
         <% end %>
 
