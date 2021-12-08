@@ -1,6 +1,6 @@
 <div class="pb-2">
     <h1 class="text-lg"><%= @topic.title %></h1>
-    <h2 class="text-med text-xs"><%= time_ago_in_words(@topic.created_at) %> | <%= link_to @topic.author.email %></h2>
+    <h2 class="text-med text-xs"><%= time_ago_in_words(@topic.created_at) %> | <%= link_to @topic.author.email, profile_path(@topic.author) %></h2>
 
     <% @topic.posts.select{|p| p.persisted? }.each_with_index do |post, index| %>
         <% if index.zero? %>
@@ -10,7 +10,7 @@
         <% else %>
             <div class="bg-yellow-500 py-1 px-2 my-1">
                 <div class="flex justify-between">
-                    <div class="text-sm font-medium link"><%= link_to post.author.email %></div>
+                    <div class="text-sm font-medium"><%= link_to post.author.email, profile_path(@topic.author) %></div>
                     <div class="text-xs text-yellow-900"><%= time_ago_in_words(post.created_at) %></div>
                 </div>
                 <div><%= post.body %></div>
