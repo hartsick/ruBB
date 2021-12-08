@@ -5,5 +5,7 @@ class Topic < ApplicationRecord
 
     accepts_nested_attributes_for :posts
 
+    validates_presence_of :title, :author
+
     scope :recently_updated, -> { joins(:posts).order('posts.created_at DESC').uniq }
 end
