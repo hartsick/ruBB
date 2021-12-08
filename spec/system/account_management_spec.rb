@@ -10,7 +10,7 @@ RSpec.describe "Account management", type: :system do
   it "should allow logging into the account" do
     visit '/'
 
-    click_on 'Sign in'
+    click_on 'sign in'
 
     fill_in 'Email', with: 'foo@example.com'
     fill_in 'Password', with: 'password1234'

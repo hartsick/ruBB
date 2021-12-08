@@ -22,7 +22,7 @@ RSpec.describe "Creating and viewing topics", type: :system do
     click_on 'post'
 
     expect(page).to have_content 'post your dogs'
-    click_on 'See all topics'
+    click_on 'see all topics'
 
     expect(page).to have_content 'all topics'
     expect(page).to have_content 'post your dogs'
@@ -36,10 +36,10 @@ RSpec.describe "Creating and viewing topics", type: :system do
     click_on 'post your dogs'
     expect(page).to have_content 'post your dogs'
 
-    fill_in 'Body', with: 'thanks I appreciate it'
-    click_on 'Reply'
+    fill_in 'body', with: 'thanks I appreciate it'
+    click_on 'reply'
 
-    click_on 'See all topics'
+    click_on 'see all topics'
 
     expect(page).to have_content(2)
   end

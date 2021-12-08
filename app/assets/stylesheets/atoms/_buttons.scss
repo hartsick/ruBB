@@ -1,9 +1,14 @@
 .btn {
-    @apply font-bold py-2 px-4 rounded;
+    @apply py-1 px-2 rounded-sm bg-yellow-100;
 }
-.btn-blue {
-    @apply bg-blue-500 text-white;
+.btn:hover {
+    @apply bg-green-100 cursor-pointer;
 }
-.btn-blue:hover {
-    @apply bg-blue-700;
+
+.link {
+    @apply underline text-black;
+}
+
+.link:hover {
+    @apply text-red-900;
 }
