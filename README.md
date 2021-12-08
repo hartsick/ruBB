@@ -2,7 +2,7 @@
 
 A very minimal Rails-based forum for friends
 
-Currently a work-in-progress that aims to be like [pgboard]() but in active development, and with even less features.
+Currently a work-in-progress that aims to be like [pgboard](https://github.com/pgBoard/pgBoard) but in active development, and with even less features.
 
 ## README TK
 
