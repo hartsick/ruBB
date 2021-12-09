@@ -1,5 +1,6 @@
 class Topic < ApplicationRecord
     has_many :posts
+    has_many :topic_views
 
     belongs_to :author, class_name: 'User', inverse_of: :created_topics
 

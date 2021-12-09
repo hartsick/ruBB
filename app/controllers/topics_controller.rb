@@ -1,6 +1,9 @@
 class TopicsController < ApplicationController
+    after_action :log_topic_view, only: %i[show create update]
+
     def index
         @topics = Topic.all.recently_updated
+        @topic_views = TopicView.where(user: current_user).order('created_at DESC').group_by{|tv| tv.topic_id }
     end
 
     def new
@@ -46,5 +49,9 @@ class TopicsController < ApplicationController
     
     def post_params
         params.require(:post).permit(:body)
+    end
+
+    def log_topic_view
+        TopicView.create(user: current_user, topic: @topic)
     end
 end

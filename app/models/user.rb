@@ -9,6 +9,7 @@ class User < ApplicationRecord
 
   has_many :created_topics, class_name: 'Topic', foreign_key: 'author_id'
   has_many :posts, foreign_key: 'author_id'
+  has_many :topic_views
 
   before_create { build_profile }
 

@@ -42,4 +42,41 @@ RSpec.describe "Creating and viewing topics", type: :system do
 
     expect(page).to have_content(2)
   end
+
+  it 'shows notifications for unread posts' do
+    create(:topic, title: 'this is a topic', author: poster)
+    create(:topic, title: 'but this is the one I made', author: viewer)
+
+    visit '/'
+
+    first_row = page.all(:xpath, "//table/tbody/tr").first
+    expect(first_row).to have_content('but this is the one I made')
+    expect(first_row).to have_content('(unread)')
+
+    click_on 'but this is the one I made'
+
+    click_on 'home'
+
+    first_row = page.all(:xpath, "//table/tbody/tr").first
+    expect(first_row).to have_content('but this is the one I made')
+    expect(first_row).to_not have_content('(unread)')
+
+    logout
+    login_as(viewer)
+
+    visit '/'
+
+    click_on 'but this is the one I made'
+    fill_in 'reply', with: 'hope you like notifications'
+    click_on 'post'
+
+    logout
+    login_as(poster)
+
+    visit '/'
+
+    first_row = page.all(:xpath, "//table/tbody/tr").first
+    expect(first_row).to have_content('but this is the one I made')
+    expect(first_row).to have_content('(unread)')
+  end
 end
