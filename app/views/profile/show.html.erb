@@ -1,9 +1,12 @@
-<h1 class="text-lg"><%= @profile.user.username %></h1>
-<div class="text-med text-xs"><%= @profile.user.posts.count %> posts</div>
-<div class="py-3 whitespace-pre-line break-all">
+<div class="py-1 px-3 bg-yellow-400">
+    <h1 class="text-lg"><%= @profile.user.username %></h1>
+    <div class="text-med text-xs"><%= @profile.user.posts.count %> posts</div>
+</div>
+
+<div class="px-3 py-1 bg-yellow-500 whitespace-pre-line break-all">
     <%= @profile.about_me %>
 </div>
 
 <% if my_profile? %>
-    <%= link_to "edit my profile", edit_profile_path(@profile.user), class: "py-1 link" %>
+    <%= link_to "edit my profile", edit_profile_path(@profile.user), class: "py-3 inline-block link" %>
 <% end %>

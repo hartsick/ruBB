@@ -22,7 +22,7 @@ RSpec.describe "Account management", type: :system do
 
     click_on 'edit'
 
-    fill_in 'favorite food', with: 'country ham'
+    fill_in 'whatever you want here', with: 'country ham'
     click_on 'update'
 
     expect(page).to have_content('country ham')
