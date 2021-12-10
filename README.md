@@ -4,27 +4,18 @@ RuBB, a very minimal Rails-based forum for friends
 
 Currently a work-in-progress that aims to be like [pgBoard](https://github.com/pgBoard/pgBoard) but in active development, and with even less features.
 
-## README TK
+## Getting started
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+TK
 
-Things you may want to cover:
+## Development
 
-* Ruby version
+TK
 
-* System dependencies
+## Contributing
 
-* Configuration
+I welcome contributions, but have pretty specific goals for this project so discourage submitting features without us discussing them first. I do keep sketches of things I'm considering and intend to tackle [in the issues](https://github.com/hartsick/ruBB/issues), and casually keep a running prioritized backlog [in this project](https://github.com/hartsick/ruBB/projects/2).
 
-* Database creation
+If you have an idea or one of the existing issues looks interesting to you (as bare as it may be), shoot me an email so we can talk! Or feel free to comment on an issue, if you'd prefer. I'd like to have a small set of interested developers that have same goals in mind rather than cultivating a wider set of contributors, so think that talking about those goals and ideas before someone contributes would be helpful.
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+contact (at) christa (dot) town
