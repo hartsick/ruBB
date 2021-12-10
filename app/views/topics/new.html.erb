@@ -3,11 +3,11 @@
     <%= render 'shared/errors', errors: @topic.errors if @topic.errors.any? %>
 
     <%= f.label :title, "title", class: "block font-semibold" %>
-    <%= f.text_field :title, class: "border-none w-6/12 py-1 px-1 mb-3 bg-yellow-100" %>
+    <%= f.text_field :title, class: "border-none w-full md:w-6/12 py-1 px-1 mb-3 bg-yellow-100" %>
     
     <%= f.fields_for :posts do |ff| %>
         <%= ff.label :body, "body", class: "block font-semibold" %>
-        <%= ff.text_area :body, class: "form-textarea border-none w-6/12 py-1 px-1 mb-3 bg-yellow-100" %>
+        <%= ff.text_area :body, class: "form-textarea border-none w-full h-36 md:w-6/12 py-1 px-1 mb-3 bg-yellow-100" %>
     <% end %>
 
     <%= f.submit "post", class: "block btn" %>

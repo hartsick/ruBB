@@ -16,6 +16,7 @@ pp "Created user with email #{viewer.email}"
 
 topic_1 = Topic.create!(title: "wow how cute am I", author: poster)
 topic_2 = Topic.create!(title: "let's talk about piglet", author: viewer)
+topic_3 = Topic.create!(title: 'h'*200, author: viewer, posts: [Post.new(body: 'hello', author: viewer)])
 
 3.times do |i|
     Post.create!(body: "#{i}x the cute", author: i.odd? ? poster : viewer, topic: topic_1)

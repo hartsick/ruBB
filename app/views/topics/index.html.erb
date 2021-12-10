@@ -2,22 +2,22 @@
 
 <table class="w-full">
 <thead>
-    <tr class="py-1 border-b-2 border-yellow-100 text-left">
-        <th class="pr-3 w-5/12">title</th>
-        <th class="px-3 w-2/12">author</th>
+    <tr class="py-1 bg-yellow-400 border-b-2 border-yellow-100 text-left">
+        <th class="px-3 w-7/12">title</th>
+        <th class="px-3 w-1/12">author</th>
         <th class="px-3 w-1/12">#</th>
-        <th class="pl-3 w-2/12">latest poster</th>
-        <th class="pl-3 w-2/12">latest post</th>
+        <th class="px-3 w-1/12">latest poster</th>
+        <th class="px-3 w-2/12">latest post</th>
     </tr>
 </thead>
 <tbody>
     <% @topics.each do |topic| %>
-        <tr class="py-1 border-b-2 border-yellow-100 <%= 'font-bold' if unread_posts?(topic, @topic_views) %>">
-            <td class="pr-3 w-5/12"><%= link_to topic.title, topic_path(topic) %> <span class="sr-only"><%= '(unread)' if unread_posts?(topic, @topic_views) %></span></td>
-            <td class="px-3 w-2/12"><%= link_to topic.author.username, profile_path(topic.author) %></td>
+        <tr class="py-1 border-b-2 border-yellow-100 bg-yellow-500 break-all <%= 'font-bold' if unread_posts?(topic, @topic_views) %>">
+            <td class="px-3 w-7/12"><%= link_to topic.title, topic_path(topic) %> <span class="sr-only"><%= '(unread)' if unread_posts?(topic, @topic_views) %></span></td>
+            <td class="px-3 w-1/12"><%= link_to topic.author.username, profile_path(topic.author) %></td>
             <td class="px-3 w-1/12"><%= topic.posts.count %></td>
-            <td class="pl-3 w-2/12"><%= link_to topic.posts.last.author.username, profile_path(topic.posts.last.author) %></td>
-            <td class="pl-3 w-2/12"><%= time_ago_in_words(topic.posts.last.created_at) %></td>
+            <td class="px-3 w-1/12"><%= link_to topic.posts.last.author.username, profile_path(topic.posts.last.author) %></td>
+            <td class="px-3 w-2/12"><%= time_ago_in_words(topic.posts.last.created_at) %></td>
         </tr>
     <% end %>
 </tbody>
