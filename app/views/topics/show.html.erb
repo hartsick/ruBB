@@ -1,13 +1,13 @@
 <div class="pb-2">
     <div class="bg-yellow-500">
         <div class="bg-yellow-400 px-2 py-1 ">
-            <h1 class="text-lg break-all"><%= @topic.title %></h1>
+            <h1 class="text-lg"><%= @topic.title %></h1>
             <h2 class="text-xs"><%= link_to @topic.author.username, profile_path(@topic.author) %> | <%= time_ago_in_words(@topic.created_at) %></h2>
         </div>
 
     <% @topic.posts.select{|p| p.persisted? }.each_with_index do |post, index| %>
         <% if index.zero? %>
-            <div class="px-2 py-3 break-all">
+            <div class="px-2 py-3">
                 <div class="px-1 whitespace-pre-line"><%= post.body %></div>
             </div>
         </div>
@@ -17,7 +17,7 @@
                     <div class="text-sm font-medium"><%= link_to post.author.username, profile_path(post.author) %></div>
                     <div class="text-xs text-yellow-900"><%= time_ago_in_words(post.created_at) %></div>
                 </div>
-                <div class="whitespace-pre-line px-1 break-all"><%= post.body %></div>
+                <div class="whitespace-pre-line px-1"><%= post.body %></div>
             </div>
         <% end %>
 
