@@ -1,9 +1,14 @@
 class TopicsController < ApplicationController
     after_action :log_topic_view, only: %i[show create update]
 
+    def today
+        @topics = Topic.all.updated_today
+        @topic_views = TopicView.where(user: current_user).where(topic: @topics).order('created_at DESC').group_by{|tv| tv.topic_id }
+    end
+
     def index
-        @topics = Topic.all.recently_updated
-        @topic_views = TopicView.where(user: current_user).order('created_at DESC').group_by{|tv| tv.topic_id }
+        @topics = Topic.all.updated_before
+        @topic_views = TopicView.where(user: current_user).where(topic: @topics).order('created_at DESC').group_by{|tv| tv.topic_id }
     end
 
     def new
