@@ -34,9 +34,6 @@ class Topic < ApplicationRecord
 
     def self.sunrise
         # ~midnight Pacific / 8am London
-        DateTime.
-            now.
-            localtime(ActiveSupport::TimeZone.new("Pacific Time (US & Canada)")).
-            beginning_of_day
+        Time.now.utc.to_datetime.beginning_of_day + 8.hours
     end
 end
