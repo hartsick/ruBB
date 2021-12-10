@@ -57,9 +57,9 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: "https://#{Rails.application.credentials.smtp[:address]}" }
   config.action_mailer.smtp_settings = {
     authentication: :plain,
-    address: Rails.application.credentials.smtp[:address],
+    address: Rails.application.credentials.smtp[:hostname],
     port: 587,
-    domain: Rails.application.credentials.smtp[:domain],
+    domain: Rails.application.credentials[:address],
     user_name: Rails.application.credentials.smtp[:user_name],
     password: Rails.application.credentials.smtp[:password],
   }
