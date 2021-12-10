@@ -4,6 +4,8 @@ RuBB, a very minimal Rails-based forum for friends
 
 Currently a work-in-progress that aims to be like [pgBoard](https://github.com/pgBoard/pgBoard) but in active development, and with even less features.
 
+Deeply influenced by [Darius Kazemi's run your own social](https://runyourown.social/) and participating in the community that he describes, and many years spent on the internet. More on this and the aims of this project TK
+
 ## Getting started
 
 TK
