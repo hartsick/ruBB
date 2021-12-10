@@ -1,7 +1,7 @@
 <div class="pb-2">
     <div class="bg-yellow-500">
         <div class="bg-yellow-400 px-2 py-1 ">
-            <h1 class="text-lg"><%= @topic.title %></h1>
+            <h1 class="text-lg break-all"><%= @topic.title %></h1>
             <h2 class="text-xs"><%= link_to @topic.author.username, profile_path(@topic.author) %> | <%= time_ago_in_words(@topic.created_at) %></h2>
         </div>
 
