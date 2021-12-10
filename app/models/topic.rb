@@ -1,5 +1,5 @@
 class Topic < ApplicationRecord
-    has_many :posts, -> { order(created_at: :desc) }
+    has_many :posts, -> { order(created_at: :asc) }
     has_many :topic_views
 
     belongs_to :author, class_name: 'User', inverse_of: :created_topics
