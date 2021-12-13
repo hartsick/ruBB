@@ -19,6 +19,7 @@ group :development, :test do
   gem 'capybara'
   gem 'factory_bot_rails'
   gem 'rspec-rails', '~> 5.0.0'
+  gem 'timecop'
 end
 
 group :development do

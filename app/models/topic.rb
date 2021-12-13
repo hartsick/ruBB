@@ -34,6 +34,11 @@ class Topic < ApplicationRecord
 
     def self.sunrise
         # ~midnight Pacific / 8am London
-        Time.now.utc.to_datetime.beginning_of_day + 8.hours
+        current_datetime = Time.now.utc.to_datetime
+        if current_datetime.hour >= 8
+          current_datetime.change(hour: 8, min: 0, sec: 0)
+        else
+          current_datetime.change(day: (current_datetime.day - 1), hour: 8, min: 0, sec: 0)
+        end
     end
 end
