@@ -2,10 +2,18 @@ class UserMention < ApplicationRecord
     belongs_to :user
     belongs_to :post
 
-    MENTION_REGEX = /\B@(\w+)/
+    CAPTURE_USERNAME_REGEX = /@(\w+)/
+    @@format_username_regex = ''
+
+    def self.format_username_regex
+        return @@format_username_regex if @@format_username_regex.present?
+
+        all_usernames = User.pluck(:username).map{|username| Regexp.escape("@#{username}")}
+        @@format_username_regex = Regexp.union(all_usernames)
+    end
 
     def self.associate_mentions_in_post!(post)
-        username_mentions = post.body.scan(MENTION_REGEX).flatten.uniq
+        username_mentions = post.body.scan(CAPTURE_USERNAME_REGEX).flatten.uniq
         return unless username_mentions.any?
 
         user_mentions = User.where(username: username_mentions)
