@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe "Creating and viewing topics", type: :system do
-  let(:poster) { create(:user, email: 'poster@example.com', password: 'password1234') }
-  let(:viewer) { create(:user, email: 'viewer@example.com', password: 'password1234') }
+  let!(:poster) { create(:user, username: 'poster', email: 'poster@example.com', password: 'password1234') }
+  let!(:viewer) { create(:user, username: 'viewer', email: 'viewer@example.com', password: 'password1234') }
   
   before do
     driven_by(:rack_test)
@@ -11,71 +11,71 @@ RSpec.describe "Creating and viewing topics", type: :system do
   end
 
   it 'observes forum sunrise' do
-      Timecop.travel(DateTime.new(2021, 01, 02, 12, 0, 0, 0)) do # 12pm UTC
-        create(:topic, title: 'this will be an old topic', author: poster)
-        
-        visit '/'
-        
-        topics = page.all(:xpath, "//table/tbody/tr")
-        expect(topics.length).to eq(1)
-        expect(topics.first).to have_content 'this will be an old topic'
-      end
+    Timecop.travel(DateTime.new(2021, 01, 02, 12, 0, 0, 0)) do # 12pm UTC
+      create(:topic, title: 'this will be an old topic', author: poster)
       
-      Timecop.travel(DateTime.new(2021, 01, 03, 0, 0, 0, 0)) do # 12:00 am next day, UTC
-        visit '/'
-        
-        expect(page.all(:xpath, "//table/tbody/tr").length).to eq(1)
-        
-        click_on 'new topic'
-        
-        fill_in 'title', with: 'this will also be an old topic'
-        fill_in 'body', with: "asdf"
-        click_on 'post'
-        
-        click_on 'back to topics'
-        
-        expect(page.all(:xpath, "//table/tbody/tr").length).to eq(2)
-        expect(page).to have_content "today's topics"
-        expect(page).to have_content 'this will be an old topic'
-        expect(page).to have_content 'this will also be an old topic'
-      end
+      visit '/'
       
-      Timecop.travel(DateTime.new(2021, 01, 03, 8, 0, 0, 0)) do # 8:00 am next day, UTC
-        visit '/'
+      topics = page.all(:xpath, "//table/tbody/tr")
+      expect(topics.length).to eq(1)
+      expect(topics.first).to have_content 'this will be an old topic'
+    end
+    
+    Timecop.travel(DateTime.new(2021, 01, 03, 0, 0, 0, 0)) do # 12:00 am next day, UTC
+      visit '/'
+      
+      expect(page.all(:xpath, "//table/tbody/tr").length).to eq(1)
+      
+      click_on 'new topic'
+      
+      fill_in 'title', with: 'this will also be an old topic'
+      fill_in 'body', with: "asdf"
+      click_on 'post'
+      
+      click_on 'back to topics'
+      
+      expect(page.all(:xpath, "//table/tbody/tr").length).to eq(2)
+      expect(page).to have_content "today's topics"
+      expect(page).to have_content 'this will be an old topic'
+      expect(page).to have_content 'this will also be an old topic'
+    end
+    
+    Timecop.travel(DateTime.new(2021, 01, 03, 8, 0, 0, 0)) do # 8:00 am next day, UTC
+      visit '/'
 
-        expect(page.all(:xpath, "//table/tbody/tr").length).to eq(0)
+      expect(page.all(:xpath, "//table/tbody/tr").length).to eq(0)
 
-        click_on 'new topic'
+      click_on 'new topic'
 
-        fill_in 'title', with: 'this is a new topic'
-        fill_in 'body', with: "asdf"
-        click_on 'post'
-    
-        click_on 'back to topics'
-    
-        expect(page.all(:xpath, "//table/tbody/tr").length).to eq(1)
-        expect(page).to have_content "today's topics"
-        expect(page).to have_content 'this is a new topic'
+      fill_in 'title', with: 'this is a new topic'
+      fill_in 'body', with: "asdf"
+      click_on 'post'
+  
+      click_on 'back to topics'
+  
+      expect(page.all(:xpath, "//table/tbody/tr").length).to eq(1)
+      expect(page).to have_content "today's topics"
+      expect(page).to have_content 'this is a new topic'
 
-        click_on "yesterday's news"
-    
-        expect(page.all(:xpath, "//table/tbody/tr").length).to eq(2)
-        expect(page).to have_content "past topics"
-        expect(page).to have_content 'this will be an old topic'
-        expect(page).to have_content 'this will also be an old topic'
+      click_on "yesterday's news"
+  
+      expect(page.all(:xpath, "//table/tbody/tr").length).to eq(2)
+      expect(page).to have_content "past topics"
+      expect(page).to have_content 'this will be an old topic'
+      expect(page).to have_content 'this will also be an old topic'
 
-        click_on 'this will be an old topic'
-    
-        fill_in 'reply', with: 'bring it to the front'
-        click_on 'post'
-    
-        click_on 'back to topics'
-    
-        expect(page).to have_content "today's topics"
-        expect(page.all(:xpath, "//table/tbody/tr").length).to eq(2)
-        expect(page).to have_content 'this is a new topic'
-        expect(page).to have_content 'this will be an old topic'
-      end
+      click_on 'this will be an old topic'
+  
+      fill_in 'reply', with: 'bring it to the front'
+      click_on 'post'
+  
+      click_on 'back to topics'
+  
+      expect(page).to have_content "today's topics"
+      expect(page.all(:xpath, "//table/tbody/tr").length).to eq(2)
+      expect(page).to have_content 'this is a new topic'
+      expect(page).to have_content 'this will be an old topic'
+    end
   end
 
   it "should allow logged in user to create a new topic and view it" do
@@ -144,5 +144,42 @@ RSpec.describe "Creating and viewing topics", type: :system do
     first_row = page.all(:xpath, "//table/tbody/tr").first
     expect(first_row).to have_content('but this is the one I made')
     expect(first_row).to have_content('(unread)')
+  end
+
+  it 'shows notifications for mentions' do
+    visit '/'
+
+    click_on 'new topic'
+
+    fill_in 'title', with: 'hello thread'
+    fill_in 'body', with: "hey @viewer"
+    click_on 'post'
+
+    logout
+    sign_in viewer
+
+    visit '/'
+
+    first_row = page.all(:xpath, "//table/tbody/tr").first
+    expect(first_row).to have_content('hello thread')
+    expect(first_row).to have_content('mentioned')
+
+    click_on 'hello thread'
+    fill_in 'reply', with: 'hi @poster'
+    click_on 'post'
+    click_on 'back to topics'
+
+    first_row = page.all(:xpath, "//table/tbody/tr").first
+    expect(first_row).to have_content('hello thread')
+    expect(first_row).to_not have_content('mentioned')
+
+    logout
+    sign_in poster
+
+    visit '/'
+
+    first_row = page.all(:xpath, "//table/tbody/tr").first
+    expect(first_row).to have_content('hello thread')
+    expect(first_row).to have_content('mentioned')
   end
 end

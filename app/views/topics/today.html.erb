@@ -1,6 +1,6 @@
 <h1 class="text-lg">today's topics</h1>
 
-<%= render 'table', topics: @topics, topic_views: @topic_views %>
+<%= render 'table', topics: @topics, topic_views: @topic_views, mentions: @mentions %>
 
 <%= link_to "yesterday's news", topics_path, class: "link block my-3" %>
 <%= link_to "new topic", new_topic_path, class: "btn inline-block mb-3" %>
