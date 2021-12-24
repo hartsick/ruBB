@@ -146,7 +146,7 @@ RSpec.describe "Creating and viewing topics", type: :system do
     expect(first_row).to have_content('(unread)')
   end
 
-  it 'shows notifications for mentions' do
+  it 'shows notifications for mentions and allows accessing past mentions' do
     visit '/'
 
     click_on 'new topic'
@@ -181,5 +181,10 @@ RSpec.describe "Creating and viewing topics", type: :system do
     first_row = page.all(:xpath, "//table/tbody/tr").first
     expect(first_row).to have_content('hello thread')
     expect(first_row).to have_content('mentioned')
+
+    click_on '@s'
+
+    first_row = page.all(:xpath, "//table/tbody/tr").first
+    expect(first_row).to have_content('hello thread')
   end
 end
