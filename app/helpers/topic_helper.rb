@@ -7,4 +7,10 @@ module TopicHelper
     def mentions_in_thread?(topic, mentions)
         mentions[topic.id] && mentions[topic.id].any?
     end
+
+    def format_body(post_body)
+        return unless post_body
+
+        post_body.gsub(UserMention.format_username_regex) {|mention| "<span class='font-bold'>#{mention}</span>" }.html_safe
+    end
 end
