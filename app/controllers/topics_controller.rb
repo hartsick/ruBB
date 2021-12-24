@@ -50,6 +50,13 @@ class TopicsController < ApplicationController
         end
     end
 
+    def mentions
+        mentioned_posts = Post.includes(:user_mentions).where(user_mentions: { user_id: current_user.id })
+        @topics = Topic.where(posts: mentioned_posts).by_most_recent_post
+        @topic_views = TopicView.where(user: current_user).where(topic: @topics).order('created_at DESC').group_by{|tv| tv.topic_id }
+        @mentions = UserMention.where(user: current_user).includes(:post).where(post: { topic: @topics }).order('user_mentions.created_at DESC').group_by{|um| um.post.topic_id }
+    end
+
     private
 
     def topic_params
