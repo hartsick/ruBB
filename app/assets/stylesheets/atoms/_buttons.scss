@@ -1,8 +1,8 @@
 .btn {
-    @apply py-1 px-2 rounded-sm bg-yellow-100;
+    @apply py-1 px-2 rounded-sm bg-green-200;
 }
 .btn:hover {
-    @apply bg-green-100 cursor-pointer;
+    @apply bg-green-600 cursor-pointer;
 }
 
 .link {
@@ -10,5 +10,5 @@
 }
 
 .link:hover {
-    @apply text-red-900;
+    @apply text-green-600;
 }
