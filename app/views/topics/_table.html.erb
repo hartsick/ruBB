@@ -1,6 +1,6 @@
 <table class="w-full">
 <thead>
-    <tr class="py-1 bg-red-400 border-b-2 border-red-100 text-left">
+    <tr class="py-1 bg-sky-400 border-b-2 border-yellow-100 text-left">
         <th class="pl-3 w-1">@<span class="sr-only">new mentions</span></th>
         <th class="px-3 w-10/12 md:w-7/12 break-all">title</th>
         <th class="px-3 hidden md:table-cell w-1/12">author</th>
@@ -11,7 +11,7 @@
 </thead>
 <tbody>
     <% topics.each do |topic| %>
-        <tr class="py-1 border-b-2 border-red-100 bg-lime-500 <%= 'font-bold' if unread_posts?(topic, topic_views) %>">
+        <tr class="py-1 border-b-2 border-yellow-100 bg-sky-300 <%= 'font-bold' if unread_posts?(topic, topic_views) %>">
             <td class="pl-3 w-1">
                 <% if unread_posts?(topic, topic_views) && mentions_in_thread?(topic, mentions) %>
                     👀

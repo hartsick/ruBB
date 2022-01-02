@@ -1,8 +1,8 @@
 .btn {
-    @apply py-1 px-2 rounded-sm bg-green-200;
+    @apply py-1 px-2 rounded-sm bg-sky-200;
 }
 .btn:hover {
-    @apply bg-green-600 cursor-pointer;
+    @apply bg-sky-300 cursor-pointer;
 }
 
 .link {
@@ -10,5 +10,5 @@
 }
 
 .link:hover {
-    @apply text-green-600;
+    @apply text-sky-400;
 }
