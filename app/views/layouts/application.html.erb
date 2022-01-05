@@ -14,8 +14,9 @@
     <nav class="w-full bg-sky-200 py-1 px-1 flex justify-between">
       <%= link_to 'home', root_path, class: 'link' %>
       <div>
-        <%= link_to '@s', my_mentions_path, class: 'link' %>
-        <% if user_signed_in? %>
+      <% if user_signed_in? %>
+          <%= link_to '*s', my_starred_path, class: 'px-1 link' %>
+          <%= link_to '@s', my_mentions_path, class: 'px-1 link' %>
           <%= link_to 'my profile', my_profile_path, class: 'px-1 link' %>
           <%= link_to "sign out", destroy_user_session_path, method: :delete, class: "px-1 link" %>
         <% else %>

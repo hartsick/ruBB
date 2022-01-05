@@ -119,4 +119,29 @@ RSpec.describe "Creating and viewing topics", type: :system do
     first_row = page.all(:xpath, "//table/tbody/tr").first
     expect(first_row).to have_content('hello thread')
   end
+
+  it 'allows saving of threads of interest' do
+    create(:topic, title: 'this is a topic', author: poster, created_at: 1.day.ago)
+
+    visit '/'
+
+    click_on 'this is a topic'
+    click_on 'star'
+
+    click_on 'back to topics'
+
+    first_row = page.all(:xpath, "//table/tbody/tr").first
+    expect(first_row).to have_content('this is a topic')
+    expect(first_row).to have_content('starred')
+
+    click_on '*s'
+
+    expect(page).to have_content('this is a topic')
+
+    click_on 'this is a topic'
+    click_on 'unstar'
+
+    click_on '*s'
+    expect(page).to_not have_content('this is a topic')
+  end
 end
