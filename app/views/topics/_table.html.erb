@@ -11,14 +11,17 @@
 </thead>
 <tbody>
     <% topics.each do |topic| %>
-        <tr class="py-1 border-b-2 border-yellow-100 bg-sky-300 <%= 'font-bold' if unread_posts?(topic, topic_views) %>">
+        <% views_for_topic = topic_views[topic.id] %>
+        <% unread_posts = unread_posts?(topic, views_for_topic) %>
+
+        <tr class="py-1 border-b-2 border-yellow-100 bg-sky-300 <%= 'font-bold' if unread_posts %>">
             <td class="pl-3 w-1">
-                <% if unread_posts?(topic, topic_views) && mentions_in_thread?(topic, mentions) %>
+                <% if unread_mentions?(mentions[topic.id], views_for_topic) %>
                     👀
                     <span class="sr-only">mentioned</span>
                 <% end %>
             </td>
-            <td class="px-3 w-10/12 md:w-6/12 break-all"><%= link_to topic.title, topic_path(topic) %> <span class="sr-only"><%= '(unread)' if unread_posts?(topic, topic_views) %></span></td>
+            <td class="px-3 w-10/12 md:w-6/12 break-all"><%= link_to topic.title, topic_path(topic) %> <span class="sr-only"><%= '(unread)' if unread_posts %></span></td>
             <td class="px-3 hidden md:table-cell w-1/12"><%= link_to topic.author.username, profile_path(topic.author) %></td>
             <td class="px-3 hidden md:table-cell w-1/12"><%= topic.posts.count %></td>
             <td class="px-3 w-2/12 md:w-1/12"><%= link_to topic.posts.last.author.username, profile_path(topic.posts.last.author) %></td>

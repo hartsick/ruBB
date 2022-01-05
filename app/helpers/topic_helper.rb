@@ -1,11 +1,14 @@
 module TopicHelper
-    def unread_posts?(topic, topic_views)
-        return true if topic_views[topic.id].nil? || topic_views[topic.id].none?
-        topic.posts.last.created_at > topic_views[topic.id].first.created_at
+    def unread_posts?(topic, views_for_topic)
+        return true if views_for_topic.nil? || views_for_topic.none?
+        topic.posts.last.created_at > views_for_topic.first.created_at
     end
 
-    def mentions_in_thread?(topic, mentions)
-        mentions[topic.id] && mentions[topic.id].any?
+    def unread_mentions?(mentions_for_topic, views_for_topic)
+        return unless mentions_for_topic.present?
+        return true unless views_for_topic.present?
+
+        mentions_for_topic.last.created_at > views_for_topic.first.created_at
     end
 
     def format_body(post_body)
