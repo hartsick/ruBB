@@ -20,7 +20,6 @@
                 <div class="bg-sky-300 px-2 py-3">
                     <div class="px-1 whitespace-pre-line"><%= format_body(post.body) %></div>
                 </div>
-            </div>
             <% else %>
                 <div class="bg-sky-300 py-1 px-2 my-1">
                     <div class="flex justify-between">
@@ -33,7 +32,6 @@
         <% end %>
     </div>
 </div>
-
 
 <%= form_with(model: @new_post, url: [@topic], method: :put, class: "py-2") do |f| %>
     <%= render 'shared/errors', errors: @new_post.errors %>
