@@ -229,7 +229,6 @@ GEM
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     thor (1.1.0)
-    timecop (0.9.4)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     warden (1.2.9)
@@ -271,7 +270,6 @@ DEPENDENCIES
   rspec-rails (~> 5.0.0)
   sentry-rails
   sentry-ruby
-  timecop
   tzinfo-data
   web-console (>= 4.1.0)
   webpacker (~> 5.4.0)

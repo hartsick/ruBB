@@ -1,7 +1,6 @@
-<h1 class="text-lg">past topics you've been mentioned in</h1>
+<h1 class="text-lg">topics you've been mentioned in</h1>
 
 <%= render 'table', topics: @topics, topic_views: @topic_views, mentions: @mentions %>
 
-<%= link_to "today's news", today_topics_path, class: "link block mt-3" %>
-<%= link_to "yesterday's news", topics_path, class: "link block mb-3" %>
+<%= link_to "back to topics", topics_path, class: "link block mb-3" %>
 <%= link_to "new topic", new_topic_path, class: "btn inline-block mb-3" %>
