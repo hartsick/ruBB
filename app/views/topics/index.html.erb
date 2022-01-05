@@ -1,5 +1,8 @@
-<h1 class="text-lg">topics</h1>
+<div class="flex justify-between">
+    <h1 class="text-lg">topics</h1>
+    <%= link_to "new topic", new_topic_path, class: "btn inline-block" %>
+</div>
+
 
 <%= render 'table', topics: @topics, topic_views: @topic_views, mentions: @mentions %>
 
-<%= link_to "new topic", new_topic_path, class: "btn inline-block" %>
