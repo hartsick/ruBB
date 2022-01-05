@@ -3,6 +3,5 @@
     <%= link_to "new topic", new_topic_path, class: "btn inline-block" %>
 </div>
 
-
-<%= render 'table', topics: @topics, topic_views: @topic_views, mentions: @mentions %>
+<%= render 'table', topics: @topics, topic_follows: @topic_follows, topic_views: @topic_views, mentions: @mentions %>
 

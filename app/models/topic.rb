@@ -1,6 +1,7 @@
 class Topic < ApplicationRecord
     has_many :posts, -> { order(created_at: :asc) }
     has_many :topic_views
+    has_many :topic_follows
 
     belongs_to :author, class_name: 'User', inverse_of: :created_topics
 
@@ -19,4 +20,8 @@ class Topic < ApplicationRecord
           AND posts.id = (#{subquery.to_sql})
       SQL
     }
+
+    def starred_for?(user)
+      topic_follows.where(user: user).any?
+    end
 end

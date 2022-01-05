@@ -1,27 +1,37 @@
 <div class="pb-2">
     <div class="bg-sky-500">
-        <div class="bg-sky-400 px-2 py-1 ">
-            <h1 class="text-lg break-all"><%= @topic.title %></h1>
-            <h2 class="text-xs"><%= link_to @topic.author.username, profile_path(@topic.author) %> | <%= time_ago_in_words(@topic.created_at) %></h2>
-        </div>
+        <div class="bg-sky-400 px-2 py-1 flex justify-between">
+            <div>
+                <h1 class="text-lg break-all"><%= @topic.title %></h1>
+                <h2 class="text-xs"><%= link_to @topic.author.username, profile_path(@topic.author) %> | <%= time_ago_in_words(@topic.created_at) %></h2>
+            </div>
 
-    <% @topic.posts.select{|p| p.persisted? }.each_with_index do |post, index| %>
-        <% if index.zero? %>
-            <div class="bg-sky-300 px-2 py-3">
-                <div class="px-1 whitespace-pre-line"><%= format_body(post.body) %></div>
+            <div class="my-2">
+                <% if @topic.starred_for?(current_user) %>
+                    <%= link_to 'unstar', topic_unstar_path(@topic), method: :post, class: "btn" %>
+                <% else %>
+                    <%= link_to 'star', topic_star_path(@topic), method: :post, class: "btn" %>
+                <% end %>
             </div>
         </div>
-        <% else %>
-            <div class="bg-sky-300 py-1 px-2 my-1">
-                <div class="flex justify-between">
-                    <div class="text-sm font-medium"><%= link_to post.author.username, profile_path(post.author) %></div>
-                    <div class="text-xs text-yellow-900"><%= time_ago_in_words(post.created_at) %></div>
+
+        <% @topic.posts.select{|p| p.persisted? }.each_with_index do |post, index| %>
+            <% if index.zero? %>
+                <div class="bg-sky-300 px-2 py-3">
+                    <div class="px-1 whitespace-pre-line"><%= format_body(post.body) %></div>
                 </div>
-                <div class="whitespace-pre-line px-1"><%= format_body(post.body) %></div>
             </div>
+            <% else %>
+                <div class="bg-sky-300 py-1 px-2 my-1">
+                    <div class="flex justify-between">
+                        <div class="text-sm font-medium"><%= link_to post.author.username, profile_path(post.author) %></div>
+                        <div class="text-xs text-yellow-900"><%= time_ago_in_words(post.created_at) %></div>
+                    </div>
+                    <div class="whitespace-pre-line px-1"><%= format_body(post.body) %></div>
+                </div>
+            <% end %>
         <% end %>
-
-    <% end %>
+    </div>
 </div>
 
 

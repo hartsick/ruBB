@@ -3,8 +3,7 @@ class TopicsController < ApplicationController
 
     def index
         @topics = Topic.all.by_most_recent_post
-        @topic_views = TopicView.where(user: current_user).where(topic: @topics).order('created_at DESC').group_by{|tv| tv.topic_id }
-        @mentions = UserMention.where(user: current_user).includes(:post).where(post: { topic: @topics }).order('user_mentions.created_at DESC').group_by{|um| um.post.topic_id }
+        setup_for_topics!(@topics)
     end
 
     def new
@@ -44,11 +43,30 @@ class TopicsController < ApplicationController
         end
     end
 
+    def star
+        @topic = Topic.find(params[:topic_id])
+        TopicFollow.create(topic: @topic, user: current_user)
+
+        redirect_to topic_path(@topic)
+    end
+
+    def unstar
+        @topic = Topic.find(params[:topic_id])
+        topic_follows = TopicFollow.where(topic: @topic, user: current_user)
+        topic_follows.delete_all
+
+        redirect_to topic_path(@topic)
+    end
+
     def mentions
         mentioned_posts = Post.includes(:user_mentions).where(user_mentions: { user_id: current_user.id })
         @topics = Topic.where(posts: mentioned_posts).by_most_recent_post
-        @topic_views = TopicView.where(user: current_user).where(topic: @topics).order('created_at DESC').group_by{|tv| tv.topic_id }
-        @mentions = UserMention.where(user: current_user).includes(:post).where(post: { topic: @topics }).order('user_mentions.created_at DESC').group_by{|um| um.post.topic_id }
+        setup_for_topics!(@topics)
+    end
+
+    def starred
+        @topics = Topic.includes(:topic_follows).where(topic_follows: { user: current_user }).by_most_recent_post
+        setup_for_topics!(@topics)
     end
 
     private
@@ -63,5 +81,11 @@ class TopicsController < ApplicationController
 
     def log_topic_view
         TopicView.create(user: current_user, topic: @topic)
+    end
+
+    def setup_for_topics!(topics)
+        @topic_follows = TopicFollow.where(user: current_user).where(topic: topics).order('created_at DESC').group_by{|tv| tv.topic_id }
+        @topic_views = TopicView.where(user: current_user).where(topic: topics).order('created_at DESC').group_by{|tv| tv.topic_id }
+        @mentions = UserMention.where(user: current_user).includes(:post).where(post: { topic: topics }).order('user_mentions.created_at DESC').group_by{|um| um.post.topic_id }
     end
 end
