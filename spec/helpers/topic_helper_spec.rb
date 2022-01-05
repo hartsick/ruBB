@@ -40,11 +40,11 @@ RSpec.describe TopicHelper, type: :helper do
     it 'returns true if latest mention is more recent than latest topic view' do
       mentions = [
         double('mention', created_at: 2.days.ago),
-        double('mention', created_at: 1.day.ago)
+        double('mention', created_at: Time.now)
       ]
       topic_views = [
         double('topic view', created_at: 3.days.ago),
-        double('topic view', created_at: Time.now),
+        double('topic view', created_at: 1.day.ago),
       ]
 
       expect(helper.unread_mentions?(mentions, topic_views)).to eq(true)

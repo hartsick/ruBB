@@ -8,7 +8,7 @@ module TopicHelper
         return unless mentions_for_topic.present?
         return true unless views_for_topic.present?
 
-        mentions_for_topic.last.created_at > views_for_topic.first.created_at
+        mentions_for_topic.first.created_at > views_for_topic.first.created_at
     end
 
     def format_body(post_body)
