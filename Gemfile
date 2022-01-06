@@ -8,6 +8,7 @@ gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
 gem 'webpacker', '~> 5.4.0'
 gem 'devise'
+gem 'devise_invitable', '~> 2.0.0'
 gem "sentry-ruby"
 gem "sentry-rails"
 
@@ -28,7 +29,9 @@ group :development do
 end
 
 group :test do
+  gem 'capybara-email'
   gem 'rspec-github', require: false
+  gem 'timecop'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

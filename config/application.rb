@@ -34,5 +34,12 @@ module Forum
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+    #
+    # RuBB-specific configuration
+    #
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+    config.x.invitations.enabled = !(ENV.fetch('RUBB_INVITATIONS_DISABLED', false))
   end
 end
