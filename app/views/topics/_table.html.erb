@@ -27,7 +27,7 @@
             </td>
             <td class="px-3 w-10/12 md:w-6/12 break-all"><%= link_to topic.title, topic_path(topic) %> <span class="sr-only"><%= '(unread)' if unread_posts %></span></td>
             <td class="px-3 hidden md:table-cell w-1/12"><%= link_to topic.author.username, profile_path(topic.author) %></td>
-            <td class="px-3 hidden md:table-cell w-1/12"><%= topic.posts.count %></td>
+            <td class="px-3 hidden md:table-cell w-1/12"><%= topic.posts.length %></td>
             <td class="px-3 w-2/12 md:w-1/12"><%= link_to topic.posts.last.author.username, profile_path(topic.posts.last.author) %></td>
             <td class="px-3 hidden md:table-cell w-2/12"><%= time_ago_in_words(topic.posts.last.created_at) %></td>
         </tr>

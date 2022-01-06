@@ -2,7 +2,7 @@ class TopicsController < ApplicationController
     after_action :log_topic_view, only: %i[show create update]
 
     def index
-        @topics = Topic.all.by_most_recent_post
+        @topics = Topic.all.list_view.by_most_recent_post
         setup_for_topics!(@topics)
     end
 
@@ -60,11 +60,12 @@ class TopicsController < ApplicationController
 
     def mentions
         mentioned_posts = Post.includes(:user_mentions).where(user_mentions: { user_id: current_user.id })
-        @topics = Topic.where(posts: mentioned_posts).by_most_recent_post
+        @topics = Topic.where(posts: mentioned_posts).list_view.by_most_recent_post
         setup_for_topics!(@topics)
     end
 
     def starred
+        # TODO: This line is breaking when adding the query optimization. Why??
         @topics = Topic.includes(:topic_follows).where(topic_follows: { user: current_user }).by_most_recent_post
         setup_for_topics!(@topics)
     end

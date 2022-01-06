@@ -9,6 +9,8 @@ class Topic < ApplicationRecord
 
     validates_presence_of :title, :author
 
+    scope :list_view, -> { includes(:author, posts: [:author]) }
+
     scope :by_most_recent_post, -> {
       subquery = Post.select(:id)
                      .where("posts.topic_id = topics.id")
