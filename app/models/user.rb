@@ -1,9 +1,9 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :registerable, :timeoutable, and :omniauthable
-  devise :database_authenticatable,
+  devise :invitable, :database_authenticatable,
          :recoverable, :rememberable, :validatable,
-         :trackable, :lockable
+         :trackable, :lockable, :invitable
 
   has_one :profile
 
@@ -11,12 +11,18 @@ class User < ApplicationRecord
   has_many :posts, foreign_key: 'author_id'
   has_many :topic_views, -> { order(created_at: :desc) }
   has_many :topic_follows, -> { order(created_at: :desc) }
+  has_many :invitations, class_name: 'User', as: :invited_by
 
   before_create { build_profile }
 
   validate :validate_username
   validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
-  validates :username, uniqueness: { case_sensitive: false }
+  validates :username, uniqueness: { case_sensitive: false }, presence: true
+
+  def has_invites_available?
+    return true if invitations.none?
+    invitations.order(invitation_created_at: :desc).limit(1).pluck(:invitation_created_at).first < DateTime.now.beginning_of_month
+  end
 
   def validate_username
     if User.where(email: username).exists?

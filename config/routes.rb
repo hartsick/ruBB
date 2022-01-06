@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :users
+  if Rails.configuration.x.invitations.enabled
+    devise_for :users, controllers: { invitations: 'users/invitations' }
+  else
+    devise_for :users, skip: :invitations
+  end
   
   resources :topics, except: %i[edit delete], constraints: { id: /\d+/ } do
     post 'star', to: 'topics#star', as: :star
