@@ -4,6 +4,12 @@
 .btn:hover {
     @apply bg-sky-300 cursor-pointer;
 }
+.btn-cta {
+    @apply py-1 px-2 rounded-sm bg-yellow-100;
+}
+.btn:hover {
+    @apply bg-yellow-200 cursor-pointer;
+}
 
 .link {
     @apply underline text-black;

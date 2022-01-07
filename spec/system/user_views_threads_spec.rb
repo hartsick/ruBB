@@ -144,4 +144,29 @@ RSpec.describe "Creating and viewing topics", type: :system do
     click_on '*s'
     expect(page).to_not have_content('this is a topic')
   end
+
+  it 'allows pinning of threads' do
+    create(:topic, title: 'this is a topic', author: poster, created_at: 1.day.ago)
+    
+    visit '/'
+    
+    click_on 'this is a topic'
+    click_on 'pin'
+    
+    create(:topic, title: 'this is a newer topic', author: poster)
+
+    click_on 'back to topics'
+
+    first_row = page.all(:xpath, '//table[@id="pinned"]/tbody/tr').first
+    expect(first_row).to have_content('this is a topic')
+    within first_row do
+      click_on 'this is a topic'
+    end
+
+    click_on 'unpin'
+    click_on 'back to topics'
+
+    pinned_rows = page.all(:xpath, '//table[@id="pinned"]/tbody/tr')
+    expect(pinned_rows.length).to eq(0)
+  end
 end
