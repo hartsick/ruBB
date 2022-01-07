@@ -1,4 +1,5 @@
 <div class="pb-2">
+    <%= link_to '▼ jump to bottom', '#last-post', class: "link" %>
     <div class="bg-sky-500">
         <div class="bg-sky-400 px-2 py-1 flex justify-between">
             <div>
@@ -33,7 +34,7 @@
     </div>
 </div>
 
-<%= form_with(model: @new_post, url: [@topic], method: :put, class: "py-2") do |f| %>
+<%= form_with(model: @new_post, url: [@topic], method: :put, class: "py-2", id: "last-post") do |f| %>
     <%= render 'shared/errors', errors: @new_post.errors %>
 
     <%= f.label :body, "reply", class: "block font-semibold" %>
