@@ -58,6 +58,20 @@ class TopicsController < ApplicationController
         redirect_to topic_path(@topic)
     end
 
+    def pin
+        @topic = Topic.find(params[:topic_id])
+        @topic.update(pinned: true)
+
+        redirect_to topic_path(@topic)
+    end
+
+    def unpin
+        @topic = Topic.find(params[:topic_id])
+        @topic.update(pinned: false)
+
+        redirect_to topic_path(@topic)
+    end
+
     def mentions
         mentioned_posts = Post.includes(:user_mentions).where(user_mentions: { user_id: current_user.id })
         @topics = Topic.where(posts: mentioned_posts).list_view.by_most_recent_post
@@ -73,7 +87,7 @@ class TopicsController < ApplicationController
     private
 
     def topic_params
-        params.require(:topic).permit(:title, posts_attributes: [:body])
+        params.require(:topic).permit(:title, :pinned, posts_attributes: [:body])
     end
     
     def post_params

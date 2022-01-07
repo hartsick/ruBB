@@ -8,10 +8,16 @@
             </div>
 
             <div class="my-2">
-                <% if @topic.starred_for?(current_user) %>
-                    <%= link_to 'unstar', topic_unstar_path(@topic), method: :post, class: "btn" %>
+                <% if @topic.pinned? %>
+                    <%= link_to 'unpin', topic_unpin_path(@topic), method: :post, class: "btn" %>
                 <% else %>
-                    <%= link_to 'star', topic_star_path(@topic), method: :post, class: "btn" %>
+                    <%= link_to 'pin', topic_pin_path(@topic), method: :post, class: "btn" %>
+                <% end %>
+
+                <% if @topic.starred_for?(current_user) %>
+                    <%= link_to 'unstar', topic_unstar_path(@topic), method: :post, class: "btn btn-cta" %>
+                <% else %>
+                    <%= link_to 'star', topic_star_path(@topic), method: :post, class: "btn btn-cta" %>
                 <% end %>
             </div>
         </div>
