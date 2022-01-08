@@ -28,7 +28,7 @@
                     <div class="px-1 whitespace-pre-line"><%= format_body(post.body) %></div>
                 </div>
             <% else %>
-                <div class="bg-primary-300 py-1 px-2 my-1">
+                <div class="<%= SiteTheme.pick_color(index) %> py-1 px-2 my-1">
                     <div class="flex justify-between">
                         <div class="text-sm font-medium"><%= link_to post.author.username, profile_path(post.author) %></div>
                         <div class="text-xs text-secondary-900"><%= time_ago_in_words(post.created_at) %></div>
