@@ -1,0 +1,28 @@
+<div class="flex justify-between">
+    <h1 class="text-lg">the poster list</h1>
+</div>
+
+<table class="w-full my-3">
+    <thead>
+        <tr class="py-1 bg-sky-400 border-b-2 border-yellow-100 text-left">
+            <th class="pl-3 w-6/12">username</th>
+            <th class="px-3 hidden md:table-cell md:w-4/12">invited by</th>
+            <th class="px-3 w-6/12 md:w-4/12">joined</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @users.each do |user| %>
+            <tr class="py-1 border-b-2 border-yellow-100 bg-yellow-400">
+                <td class="px-3 pl-3 w-6/12"><%= link_to user.username, profile_path(user) %></td>
+                <td class="px-3 hidden md:table-cell md:w-4/12">
+                    <% if user.invited_by.present? %>
+                        <%= link_to user.invited_by.username, profile_path(user.invited_by) %>
+                    <% else %>
+                        -
+                    <% end %>
+                </td>
+                <td class="px-3 w-6/12 md:w-4/12"><%= time_ago_in_words(user.created_at) %></td>
+            </tr>
+        <% end %>
+    </tbody>
+</table
