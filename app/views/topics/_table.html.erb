@@ -14,7 +14,7 @@
             <% views_for_topic = topic_views[topic.id] %>
             <% unread_posts = unread_posts?(topic, views_for_topic) %>
             
-            <tr class="py-1 border-b-2 border-secondary-100 <%= index.even? ? 'bg-primary-300' : 'bg-primary-200' %> <%= 'font-bold' if unread_posts %>">
+            <tr class="py-1 border-b-2 border-secondary-100 <%= SiteTheme.pick_color(index) %> <%= 'font-bold' if unread_posts %>">
                 <td class="pl-3 w-1">
                     <% if unread_mentions?(mentions[topic.id], views_for_topic) %>
                         👀

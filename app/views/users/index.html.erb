@@ -11,8 +11,8 @@
         </tr>
     </thead>
     <tbody>
-        <% @users.each do |user| %>
-            <tr class="py-1 border-b-2 border-secondary-100 bg-primary-300">
+        <% @users.each_with_index do |user, index| %>
+            <tr class="py-1 border-b-2 border-secondary-100 <%= SiteTheme.pick_color(index) %>">
                 <td class="px-3 pl-3 w-6/12"><%= link_to user.username, profile_path(user) %></td>
                 <td class="px-3 hidden md:table-cell md:w-4/12">
                     <% if user.invited_by.present? %>
