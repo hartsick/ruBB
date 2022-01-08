@@ -15,6 +15,7 @@ These are a work-in-progress, but capture some of what has been guiding me:
 * As much as possible, keep one view of the forum so that all information is shared (eg don't allow custimization that would significantly change someone's experience)
 * Do not privilege those with technical systems access (there is a lot baked into this, but essentially technical maintainers should not necessarily be the moderators)
 * The forum does not make asks of your attention, but tries to give you tools manage your experience
+* Keep the architecture conventional and maintenance as simple as possible. It shouldn't be a pain to maintain
 
 ## Features
 
