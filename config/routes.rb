@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   else
     devise_for :users, skip: :invitations
   end
+  get 'directory', to: 'users#index', as: :user_directory
   
   resources :topics, except: %i[edit delete], constraints: { id: /\d+/ } do
     post 'star', to: 'topics#star', as: :star
