@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @layer components {
     .btn {
         @apply py-1 px-2 rounded-sm bg-primary-200;
@@ -18,5 +22,13 @@
     
     .link:hover {
         @apply text-primary-400;
+    }
+
+    .link--light {
+        @apply underline text-black bg-primary-400 px-1; 
+    }
+
+    .link--light:hover {
+        @apply underline text-primary-400 bg-primary-900 px-1; 
     }
 }

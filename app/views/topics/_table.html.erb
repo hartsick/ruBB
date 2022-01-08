@@ -10,11 +10,11 @@
         </tr>
     </thead>
     <tbody>
-        <% topics.each do |topic| %>
+        <% topics.each_with_index do |topic, index| %>
             <% views_for_topic = topic_views[topic.id] %>
             <% unread_posts = unread_posts?(topic, views_for_topic) %>
             
-            <tr class="py-1 border-b-2 border-secondary-100 bg-primary-300 <%= 'font-bold' if unread_posts %>">
+            <tr class="py-1 border-b-2 border-secondary-100 <%= index.even? ? 'bg-primary-300' : 'bg-primary-200' %> <%= 'font-bold' if unread_posts %>">
                 <td class="pl-3 w-1">
                     <% if unread_mentions?(mentions[topic.id], views_for_topic) %>
                         👀

@@ -1,4 +1,4 @@
-<h1 class="text-lg pb-1">accept invite</h1>
+<h1 class="text-lg mb-1 px-1 inline-block bg-secondary-300">accept invite</h1>
 
 <%= form_for(resource, as: resource_name, url: invitation_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
@@ -6,13 +6,13 @@
   <%= f.hidden_field :invitation_token, readonly: true %>
 
   <div class="field">
-  <%= f.label :username, 'username', class: "block font-semibold" %>
+  <%= f.label :username, 'username', class: "block font-semibold text-primary-100" %>
   <%= f.text_field :username, autofocus: true, autocomplete: "username", autocapitalize: "off", spellcheck: "false", class: "border-none w-full md:w-6/12 py-1 px-1 mb-3 bg-primary-100" %>
   </div>
   
   <% if f.object.class.require_password_on_accepting %>
     <div class="field">
-      <%= f.label :password, "new password", class: "block font-semibold" %>
+      <%= f.label :password, "new password", class: "block font-semibold text-primary-100" %>
       <% if @minimum_password_length %>
         <em>(<%= @minimum_password_length %> characters minimum)</em><br />
       <% end %>
@@ -20,7 +20,7 @@
     </div>
 
     <div class="field">
-      <%= f.label :password_confirmation, "confirm new password", class: "block font-semibold" %>
+      <%= f.label :password_confirmation, "confirm new password", class: "block font-semibold text-primary-100" %>
       <%= f.password_field :password_confirmation, autocomplete: "new-password", autocapitalize: "off", spellcheck: "false", class: "border-none w-full md:w-6/12 py-1 px-1 mb-3 bg-primary-100" %>
     </div>
   <% end %>
