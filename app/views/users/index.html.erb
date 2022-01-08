@@ -1,5 +1,5 @@
 <div class="flex justify-between">
-    <h1 class="text-lg">the poster list</h1>
+    <h1 class="text-lg mb-1 px-1 inline-block bg-secondary-300">the poster list</h1>
 </div>
 
 <table class="w-full my-3">
@@ -12,7 +12,7 @@
     </thead>
     <tbody>
         <% @users.each do |user| %>
-            <tr class="py-1 border-b-2 border-secondary-100 bg-secondary-400">
+            <tr class="py-1 border-b-2 border-secondary-100 bg-primary-300">
                 <td class="px-3 pl-3 w-6/12"><%= link_to user.username, profile_path(user) %></td>
                 <td class="px-3 hidden md:table-cell md:w-4/12">
                     <% if user.invited_by.present? %>
