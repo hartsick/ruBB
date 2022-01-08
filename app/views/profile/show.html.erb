@@ -1,15 +1,15 @@
 <% if Rails.configuration.x.invitations.enabled && current_user.has_invites_available? %>
-    <div class="py-1 px-3 mb-3 bg-yellow-200">
+    <div class="py-1 px-3 mb-3 bg-secondary-200">
         hello, you have an invite available! care to <%= link_to 'invite someone', new_user_invitation_path, class: 'link' %>?
     </div>
 <% end %>
 
-<div class="py-1 px-3 bg-sky-400">
+<div class="py-1 px-3 bg-primary-400">
     <h1 class="text-lg"><%= @profile.user.username %></h1>
     <div class="text-med text-xs"><%= @profile.user.posts.count %> posts</div>
 </div>
 
-<div class="px-3 py-1 bg-sky-300 whitespace-pre-line">
+<div class="px-3 py-1 bg-primary-300 whitespace-pre-line">
     <%= @profile.about_me %>
 </div>
 

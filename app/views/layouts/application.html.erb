@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="h-full bg-sky-700">
+<html class="h-full bg-primary-600">
   <head>
     <title>Forum</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -11,7 +11,7 @@
   </head>
 
   <body class="h-full">
-    <nav class="w-full bg-sky-200 py-1 px-1 flex justify-between">
+    <nav class="w-full bg-primary-200 py-1 px-1 flex justify-between">
       <%= link_to 'home', root_path, class: 'link' %>
       <div>
       <% if user_signed_in? %>
@@ -26,8 +26,8 @@
       </div>
     </nav>
     <div class="w-full snow">
-      <p class="px-1 bg-sky-200 text-black"><%= notice %></p>
-      <p class="px-1 bg-sky-100 text-black"><%= alert %></p>
+      <p class="px-1 bg-primary-200 text-black"><%= notice %></p>
+      <p class="px-1 bg-primary-100 text-black"><%= alert %></p>
     </div>
     <div class="py-5 px-3">
       <%= yield %>

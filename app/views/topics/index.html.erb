@@ -4,10 +4,10 @@
 </div>
 
 <details class="w-full my-3" open>
-    <summary class="py-1 px-1 bg-yellow-200">forum-wide pinned posts</summary>
+    <summary class="py-1 px-1 bg-secondary-200">forum-wide pinned posts</summary>
     <table class="w-full" id="pinned">
         <thead>
-            <tr class="bg-yellow-300 border-b-2 border-yellow-100 text-left">
+            <tr class="bg-secondary-300 border-b-2 border-secondary-100 text-left">
                 <th class="px-3 w-10/12 md:w-7/12 break-all">title</th>
                 <th class="px-3 hidden md:table-cell w-1/12">author</th>
                 <th class="px-3 hidden md:table-cell w-1/12">#</th>
@@ -20,7 +20,7 @@
                 <% views_for_topic = @topic_views[topic.id] %>
                 <% unread_posts = unread_posts?(topic, views_for_topic) %>
                 
-                <tr class="py-1 border-b-2 border-yellow-100 bg-yellow-400 <%= 'font-bold' if unread_posts %>">
+                <tr class="py-1 border-b-2 border-secondary-100 bg-secondary-400 <%= 'font-bold' if unread_posts %>">
                     <td class="px-3 w-10/12 md:w-6/12 break-all"><%= link_to topic.title, topic_path(topic) %> <span class="sr-only"><%= '(unread)' if unread_posts %></span></td>
                     <td class="px-3 hidden md:table-cell w-1/12"><%= link_to topic.author.username, profile_path(topic.author) %></td>
                     <td class="px-3 hidden md:table-cell w-1/12"><%= topic.posts.length %></td>
