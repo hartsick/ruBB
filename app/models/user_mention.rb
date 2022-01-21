@@ -5,7 +5,7 @@ class UserMention < ApplicationRecord
     CAPTURE_USERNAME_REGEX = /@(\w+)/
 
     def self.format_username_regex
-        all_usernames = User.pluck(:username).map{|username| Regexp.escape("@#{username}")}
+        all_usernames = User.postable.pluck(:username).map{|username| Regexp.escape("@#{username}")}
         @format_username_regex = Regexp.union(all_usernames)
     end
 
