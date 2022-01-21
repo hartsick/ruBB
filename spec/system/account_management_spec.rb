@@ -42,6 +42,9 @@ RSpec.describe "Account management", type: :system do
 
     expect(page).to have_content 'An invitation email has been sent to hello@example.com'
 
+    click_on 'directory'
+    expect(page).to have_content 'the poster list' # Don't break if invite not accepted
+
     sign_out user
     
     open_email "hello@example.com"
@@ -53,5 +56,9 @@ RSpec.describe "Account management", type: :system do
     click_on 'create account'
 
     expect(page).to have_text 'Your password was set successfully'
+
+    click_on 'directory'
+    expect(page).to have_content 'the poster list'
+    expect(page).to have_content 'tinytoad'
   end
 end

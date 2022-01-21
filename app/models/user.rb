@@ -19,7 +19,10 @@ class User < ApplicationRecord
   validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
   validates :username, uniqueness: { case_sensitive: false }, presence: true
 
-  scope :postable, -> { where.not(sign_in_count: nil).order('created_at DESC') }
+  scope :accepted_invite, -> { created_by_invite.invitation_accepted }
+  scope :created_by_admin, -> { where(invitation_created_at: nil) }
+  
+  scope :postable, -> { accepted_invite.or(created_by_admin).order('created_at DESC') }
 
   def has_invites_available?
     return true if invitations.none?

@@ -21,6 +21,20 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe 'scopes' do
+    describe '.postable' do
+      it 'returns users created without invitation' do
+        pig = create(:user, username: 'piglet')
+        expect(User.postable).to include(pig)
+      end
+
+      it 'does not return users who have not accepted invitation' do
+        pig = User.invite!(email: 'new_user@example.com')
+        expect(User.postable).to_not include(pig)
+      end
+    end
+  end
+
   describe '.has_invites_available?' do
     let(:inviter) { create(:user) }
     context 'when user has invited someone this month' do
