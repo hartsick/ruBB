@@ -14,14 +14,17 @@
         <% @users.each_with_index do |user, index| %>
             <tr class="py-1 border-b-2 border-secondary-100 <%= SiteTheme.pick_color(index) %>">
                 <td class="px-3 pl-3 w-6/12"><%= link_to user.username, profile_path(user) %></td>
-                <td class="px-3 hidden md:table-cell md:w-4/12">
-                    <% if user.invited_by.present? %>
+                <% if user.invited_by.present? %>
+                    <td class="px-3 hidden md:table-cell md:w-4/12">
                         <%= link_to user.invited_by.username, profile_path(user.invited_by) %>
-                    <% else %>
+                    </td>
+                    <td class="px-3 w-6/12 md:w-4/12"><%= time_ago_in_words(user.invitation_accepted_at) %></td>
+                <% else %>
+                    <td class="px-3 hidden md:table-cell md:w-4/12">
                         -
-                    <% end %>
-                </td>
-                <td class="px-3 w-6/12 md:w-4/12"><%= time_ago_in_words(user.created_at) %></td>
+                    </td>
+                    <td class="px-3 w-6/12 md:w-4/12"><%= time_ago_in_words(user.created_at) %></td>
+                <% end %>
             </tr>
         <% end %>
     </tbody>
