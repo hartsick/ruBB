@@ -11,12 +11,12 @@ RSpec.describe User, type: :model do
     end
     
     it 'requires that username be unique' do
-      create(:user, username: 'piglet')
+      FactoryBot.create(:user, username: 'piglet')
       expect(FactoryBot.build(:user, username: 'piglet')).to_not be_valid
     end
 
     it 'will not accept username of email in system' do
-      create(:user, email: 'piglet@gmail.com')
+      FactoryBot.create(:user, email: 'piglet@gmail.com')
       expect(FactoryBot.build(:user, username: 'piglet@gmail.com')).to_not be_valid
     end
   end
@@ -24,7 +24,7 @@ RSpec.describe User, type: :model do
   describe 'scopes' do
     describe '.postable' do
       it 'returns users created without invitation' do
-        pig = create(:user, username: 'piglet')
+        pig = FactoryBot.create(:user, username: 'piglet')
         expect(User.postable).to include(pig)
       end
 
@@ -36,7 +36,7 @@ RSpec.describe User, type: :model do
   end
 
   describe '.has_invites_available?' do
-    let(:inviter) { create(:user) }
+    let(:inviter) { FactoryBot.create(:user) }
     context 'when user has invited someone this month' do
       before do
         User.invite!({ email: 'new_user@example.com' }, inviter)

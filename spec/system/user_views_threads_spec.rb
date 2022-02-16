@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe "Creating and viewing topics", type: :system do
-  let!(:poster) { create(:user, username: 'poster', email: 'poster@example.com', password: 'password1234') }
-  let!(:viewer) { create(:user, username: 'viewer', email: 'viewer@example.com', password: 'password1234') }
+  let!(:poster) { FactoryBot.create(:user, username: 'poster', email: 'poster@example.com', password: 'password1234') }
+  let!(:viewer) { FactoryBot.create(:user, username: 'viewer', email: 'viewer@example.com', password: 'password1234') }
   
   before do
     driven_by(:rack_test)
@@ -42,8 +42,8 @@ RSpec.describe "Creating and viewing topics", type: :system do
   end
 
   it 'shows notifications for unread posts' do
-    create(:topic, title: 'this is a topic', author: poster, created_at: 1.day.ago)
-    create(:topic, title: 'but this is the one I made', author: viewer, created_at: Time.now)
+    FactoryBot.create(:topic, title: 'this is a topic', author: poster, created_at: 1.day.ago)
+    FactoryBot.create(:topic, title: 'but this is the one I made', author: viewer, created_at: Time.now)
 
     visit '/'
 
@@ -121,7 +121,7 @@ RSpec.describe "Creating and viewing topics", type: :system do
   end
 
   it 'allows saving of threads of interest' do
-    create(:topic, title: 'this is a topic', author: poster, created_at: 1.day.ago)
+    FactoryBot.create(:topic, title: 'this is a topic', author: poster, created_at: 1.day.ago)
 
     visit '/'
 
@@ -146,14 +146,14 @@ RSpec.describe "Creating and viewing topics", type: :system do
   end
 
   it 'allows pinning of threads' do
-    create(:topic, title: 'this is a topic', author: poster, created_at: 1.day.ago)
+    FactoryBot.create(:topic, title: 'this is a topic', author: poster, created_at: 1.day.ago)
     
     visit '/'
     
     click_on 'this is a topic'
     click_on 'pin'
     
-    create(:topic, title: 'this is a newer topic', author: poster)
+    FactoryBot.create(:topic, title: 'this is a newer topic', author: poster)
 
     click_on 'back to topics'
 
