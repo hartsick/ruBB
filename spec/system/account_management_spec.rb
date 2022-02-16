@@ -2,7 +2,7 @@ require 'rails_helper'
 require 'capybara/email/rspec'
 
 RSpec.describe "Account management", type: :system do
-  let!(:user) { create(:user, username: 'foobar', email: 'foo@example.com', password: 'password1234') }
+  let!(:user) { FactoryBot.create(:user, username: 'foobar', email: 'foo@example.com', password: 'password1234') }
 
   before do
     driven_by(:rack_test)
