@@ -31,6 +31,13 @@ runs:
       shell: bash
       run: yarn install --frozen-lockfile
 
+    - name: Precompile assets
+      env:
+        RAILS_ENV: ${{ inputs.rails_env }}
+        SECRET_KEY_BASE: not-actually-secret
+      shell: bash
+      run: bundle exec rake assets:precompile
+
     - name: Set up database
       env:
         RAILS_ENV: ${{ inputs.rails_env }}
