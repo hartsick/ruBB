@@ -1,13 +1,18 @@
 const colors = require('tailwindcss/colors')
 
 module.exports = {
-  purge: [],
-  darkMode: false, // or 'media' or 'class'
+  content: [
+    './app/models/site_theme.rb',
+    './app/views/**/*.html.erb',
+    './app/helpers/**/*.rb',
+    './app/javascript/**/*.js',
+    './app/javascript/application.js'
+  ],
   theme: {
     extend: {
       colors: {
-        primary: colors.gray,
-        secondary: colors.gray,
+        primary: colors.zinc,
+        secondary: colors.zinc,
         emerald: colors.emerald,
         rose: colors.rose,
         orange: colors.orange,
@@ -16,11 +21,8 @@ module.exports = {
       },
     },
   },
-  variants: {
-    extend: {},
-  },
   plugins: [
     require('@tailwindcss/typography'),
     require('@tailwindcss/forms'),
-  ],
+  ]
 }

@@ -9,15 +9,15 @@
 
             <div class="my-2">
                 <% if @topic.pinned? %>
-                    <%= link_to 'unpin', topic_unpin_path(@topic), method: :post, class: "btn" %>
+                    <%= link_to 'unpin', topic_unpin_path(@topic), class: "btn", data: { 'turbo-method' => :post, confirm: 'unpin for everyone?' } %>
                 <% else %>
-                    <%= link_to 'pin', topic_pin_path(@topic), method: :post, class: "btn" %>
+                    <%= link_to 'pin', topic_pin_path(@topic), class: "btn", data: { 'turbo-method' => :post, confirm: 'pin for everyone?' } %>
                 <% end %>
 
                 <% if @topic.starred_for?(current_user) %>
-                    <%= link_to 'unstar', topic_unstar_path(@topic), method: :post, class: "btn btn-cta" %>
+                    <%= link_to 'unstar', topic_unstar_path(@topic), class: "btn btn-cta", data: { 'turbo-method' => :post } %>
                 <% else %>
-                    <%= link_to 'star', topic_star_path(@topic), method: :post, class: "btn btn-cta" %>
+                    <%= link_to 'star', topic_star_path(@topic), class: "btn btn-cta", data: { 'turbo-method' => :post } %>
                 <% end %>
             </div>
         </div>

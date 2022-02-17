@@ -33,3 +33,5 @@ yarn-debug.log*
 .yarn-integrity
 
 spec/examples.txt
+/app/assets/builds/*
+!/app/assets/builds/.keep

@@ -1,20 +1,17 @@
 {
-  "name": "ruBB",
-  "private": true,
+  "name": "app",
+  "private": "true",
   "dependencies": {
-    "@rails/ujs": "^6.0.0",
-    "@rails/webpacker": "5.4.3",
-    "webpack": "^4.46.0",
-    "webpack-cli": "^3.3.12",
-    "@tailwindcss/forms": "^0.3.4",
-    "@tailwindcss/typography": "^0.4.1",
-    "autoprefixer": "^9",
-    "postcss": "^7",
-    "postcss-loader": "^4.0.3",
-    "sass": "^1.32.7",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat"
+    "@hotwired/turbo-rails": "^7.1.1",
+    "@tailwindcss/forms": "^0.4.0",
+    "@tailwindcss/typography": "^0.5.2",
+    "autoprefixer": "^10.4.2",
+    "esbuild": "^0.14.22",
+    "postcss": "^8.4.6",
+    "tailwindcss": "^3.0.23"
   },
-  "devDependencies": {
-    "webpack-dev-server": "^3"
+  "scripts": {
+    "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css",
+    "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds"
   }
 }
