@@ -6,11 +6,14 @@ ruby '3.0.3'
 gem 'rails', '~> 7.0'
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
-gem 'webpacker', '~> 5.4.0'
 gem 'devise'
 gem 'devise_invitable', '~> 2.0.0'
-gem "sentry-ruby"
-gem "sentry-rails"
+gem 'sentry-ruby'
+gem 'sentry-rails'
+gem 'sprockets-rails'
+gem 'cssbundling-rails'
+gem 'jsbundling-rails'
+gem 'turbo-rails'
 
 gem 'bootsnap', '>= 1.4.4', require: false
 
@@ -25,10 +28,10 @@ end
 group :development do
   gem 'web-console', '>= 4.1.0'
   gem 'rack-mini-profiler', '~> 2.0'
-  gem 'listen', '~> 3.3'
 end
 
 group :test do
+  gem 'selenium-webdriver'
   gem 'capybara-email'
   gem 'rspec-github', require: false
   gem 'timecop'

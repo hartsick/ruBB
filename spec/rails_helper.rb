@@ -64,4 +64,9 @@ RSpec.configure do |config|
 
   config.include Devise::Test::IntegrationHelpers, type: :system
   config.include Warden::Test::Helpers
+  config.after(:each, type: :system) do
+    Warden.test_reset!
+  end
+  
+  config.include FactoryBot::Syntax::Methods
 end

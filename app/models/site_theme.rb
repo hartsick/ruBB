@@ -6,7 +6,7 @@ class SiteTheme
         bg-rose-100
         bg-pink-100
         bg-orange-100
-        bg-gray-100
+        bg-zinc-100
     ]
 
     def self.pick_color(number)
