@@ -14,6 +14,7 @@ gem 'sprockets-rails'
 gem 'cssbundling-rails'
 gem 'jsbundling-rails'
 gem 'turbo-rails'
+gem 'tailwindcss-rails'
 
 gem 'bootsnap', '>= 1.4.4', require: false
 

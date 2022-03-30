@@ -236,6 +236,10 @@ GEM
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     strscan (3.0.1)
+    tailwindcss-rails (2.0.8-x86_64-darwin)
+      railties (>= 6.0.0)
+    tailwindcss-rails (2.0.8-x86_64-linux)
+      railties (>= 6.0.0)
     thor (1.2.1)
     timecop (0.9.4)
     timeout (0.2.0)
@@ -283,6 +287,7 @@ DEPENDENCIES
   sentry-rails
   sentry-ruby
   sprockets-rails
+  tailwindcss-rails
   timecop
   turbo-rails
   tzinfo-data
