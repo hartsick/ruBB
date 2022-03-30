@@ -1,3 +1,5 @@
+<% title("Edit profile") %>
+
 <h1 class="text-lg px-1 inline-block bg-secondary-300">editing <%= @profile.user.username %>'s profile</h1>
 <div class="py-3">
     <%= form_with model: @profile, url: profile_path(@profile.user) do |f| %>

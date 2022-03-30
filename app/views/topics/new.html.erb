@@ -1,3 +1,5 @@
+<% title("New topic") %>
+
 <h1 class="text-lg mb-1 px-1 inline-block bg-secondary-300">new topic</h1>
 <%= form_with model: @topic, class: "py-2" do |f| %>
     <%= render 'shared/errors', errors: @topic.errors if @topic.errors.any? %>
