@@ -20,7 +20,7 @@
           <%= link_to '*s', my_starred_path, class: 'px-1 link' %>
           <%= link_to '@s', my_mentions_path, class: 'px-1 link' %>
           <%= link_to 'my profile', my_profile_path, class: 'px-1 link' %>
-          <%= link_to "sign out", destroy_user_session_path, method: :delete, class: "px-1 link" %>
+          <%= link_to "sign out", destroy_user_session_path, method: :delete, class: "px-1 link", data: { turbo_method: "delete" } %>
         <% else %>
           <%= link_to "sign in", new_user_session_path, class: 'link' %>
         <% end %>
