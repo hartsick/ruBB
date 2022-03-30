@@ -3,7 +3,7 @@
   <head>
     <title>
       <%= "#{sanitize(yield(:title))} · " if content_for?(:title) %>
-      <%= Rails.application.credentials.domain %>
+      <%= Rails.application.credentials.website_name %>
     </title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
