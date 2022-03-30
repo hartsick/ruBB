@@ -170,6 +170,7 @@ RSpec.describe "Creating and viewing topics", type: :system do
 
   it 'allows pinning of threads' do
     FactoryBot.create(:topic, title: 'this is a topic', author: poster, created_at: 1.day.ago)
+    FactoryBot.create(:topic, title: 'this is a newer topic', author: poster)
     
     # Poster
     sign_in poster
@@ -177,11 +178,10 @@ RSpec.describe "Creating and viewing topics", type: :system do
     
     click_on 'this is a topic'
     click_on 'pin'
-    
-    FactoryBot.create(:topic, title: 'this is a newer topic', author: poster)
-
     click_on 'back to topics'
 
+    expect(page).to have_selector('h1', text: 'topics')
+    page.find('details > summary').click
     first_row = page.all(:xpath, '//table[@id="pinned"]/tbody/tr').first
     expect(first_row).to have_content('this is a topic')
     within first_row do
