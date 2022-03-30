@@ -202,4 +202,27 @@ RSpec.describe "Creating and viewing topics", type: :system do
     
     sign_out :user
   end
+
+  it 'allows marking all threads as read' do
+    FactoryBot.create(:topic, title: 'this is my topic', author: poster, created_at: 1.day.ago)
+    FactoryBot.create(:topic, title: 'not my topic', author: viewer, created_at: Time.now)
+
+    login_as(poster)
+
+    visit '/'
+
+    expect(page).to have_content('topics')
+    first_row = page.all(:xpath, "//table/tbody/tr").first
+    expect(first_row).to have_content('not my topic')
+    expect(first_row).to have_content('(unread)')
+
+    click_on 'mark all as read'
+
+    expect(page).to have_content('topics')
+    first_row = page.all(:xpath, "//table/tbody/tr").first
+    expect(first_row).to have_content('not my topic')
+    expect(first_row).to have_content('(unread)')
+
+    sign_out :user
+  end
 end
