@@ -46,7 +46,7 @@ RSpec.describe "Creating and viewing topics", type: :system do
 
   it 'shows notifications for unread posts' do
     FactoryBot.create(:topic, title: 'this is a topic', author: poster, created_at: 1.day.ago)
-    FactoryBot.create(:topic, title: 'but this is the one I made', author: viewer, created_at: Time.now)
+    FactoryBot.create(:topic, title: 'but this is the one I made', author: viewer, created_at: 1.hour.ago)
 
     # Poster
     sign_in poster
@@ -170,7 +170,7 @@ RSpec.describe "Creating and viewing topics", type: :system do
 
   it 'allows pinning of threads' do
     FactoryBot.create(:topic, title: 'this is a topic', author: poster, created_at: 1.day.ago)
-    FactoryBot.create(:topic, title: 'this is a newer topic', author: poster)
+    FactoryBot.create(:topic, title: 'this is a newer topic', author: poster, created_at: 1.hour.ago)
     
     # Poster
     sign_in poster
