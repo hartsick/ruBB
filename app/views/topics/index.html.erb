@@ -36,7 +36,7 @@
 </details>
 
 <div class="flex flex-row-reverse">
-    <%= button_to "mark all as read", mark_as_read_path, class: "btn inline-block" %>
+    <%= button_to "mark all as read", mark_as_read_path, form_class: "inline-block", class: "btn" %>
 </div>
 
 <%= render 'table', topics: @topics, topic_follows: @topic_follows, topic_views: @topic_views, mentions: @mentions %>
