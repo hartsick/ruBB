@@ -5,6 +5,7 @@
       <%= "#{sanitize(yield(:title))} · " if content_for?(:title) %>
       <%= Rails.application.credentials.website_name %>
     </title>
+    <%= yield(:cache_control) if content_for?(:cache_control) %>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
