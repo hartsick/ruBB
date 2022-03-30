@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   end
   get 'topics/mentions', to: 'topics#mentions', as: :my_mentions
   get 'topics/starred', to: 'topics#starred', as: :my_starred
+  post 'topics/mark_as_read', to: 'topics#mark_as_read', as: :mark_as_read
 
   resources :profile, only: %i[show edit update], param: :username
   get 'profile', to: 'profile#mine', as: :my_profile

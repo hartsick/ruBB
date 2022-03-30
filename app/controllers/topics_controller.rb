@@ -84,6 +84,13 @@ class TopicsController < ApplicationController
         setup_for_topics!(@topics)
     end
 
+    def mark_as_read
+        topic_view_attributes = Topic.pluck(:id).map{|topic_id| { topic_id: topic_id, user_id: current_user.id } }
+        most_recent_topic_view_ids = TopicView.insert_all!(topic_view_attributes)
+
+        redirect_to topics_path
+    end
+
     private
 
     def topic_params
