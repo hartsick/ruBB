@@ -7,13 +7,19 @@
         @apply py-1 px-2 rounded-sm bg-primary-200;
     }
     .btn:hover {
-        @apply bg-primary-300 cursor-pointer;
+        @apply bg-secondary-100 cursor-pointer;
     }
     .btn-cta {
         @apply py-1 px-2 rounded-sm bg-secondary-100;
     }
-    .btn:hover {
+    .btn-cta:hover {
         @apply bg-secondary-200 cursor-pointer;
+    }
+    .btn-sm {
+        @apply py-0.5 px-1 rounded-sm text-sm bg-primary-200;
+    }
+    .btn-sm:hover {
+        @apply bg-secondary-100 cursor-pointer;
     }
     
     .link {

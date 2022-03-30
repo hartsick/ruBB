@@ -53,7 +53,7 @@ RSpec.describe "Creating and viewing topics", type: :system do
     visit '/'
 
     expect(page).to have_selector('h1', text: 'topics')
-    first_row = page.all(:xpath, "//table/tbody/tr").first
+    first_row = page.all(:xpath, '//table[@id="topics-table"]/tbody/tr').first
     expect(first_row).to have_content('but this is the one I made')
     expect(first_row).to have_content('(unread)')
 
@@ -61,7 +61,7 @@ RSpec.describe "Creating and viewing topics", type: :system do
     click_on 'home'
 
     expect(page).to have_selector('h1', text: 'topics')
-    first_row = page.all(:xpath, "//table/tbody/tr").first
+    first_row = page.all(:xpath, '//table[@id="topics-table"]/tbody/tr').first
     expect(first_row).to have_content('but this is the one I made')
     expect(first_row).to_not have_content('(unread)')
 
@@ -83,7 +83,7 @@ RSpec.describe "Creating and viewing topics", type: :system do
     visit '/'
 
     expect(page).to have_selector('h1', text: 'topics')
-    first_row = page.all(:xpath, "//table/tbody/tr").first
+    first_row = page.all(:xpath, '//table[@id="topics-table"]/tbody/tr').first
     expect(first_row).to have_content('but this is the one I made')
     expect(first_row).to have_content('(unread)')
   end
@@ -106,7 +106,7 @@ RSpec.describe "Creating and viewing topics", type: :system do
     visit '/'
 
     expect(page).to have_selector('h1', text: 'topics')
-    first_row = page.all(:xpath, "//table/tbody/tr").first
+    first_row = page.all(:xpath, '//table[@id="topics-table"]/tbody/tr').first
     expect(first_row).to have_content('hello thread')
     expect(first_row).to have_content('mentioned')
 
@@ -116,7 +116,7 @@ RSpec.describe "Creating and viewing topics", type: :system do
     click_on 'back to topics'
 
     expect(page).to have_selector('h1', text: 'topics')
-    first_row = page.all(:xpath, "//table/tbody/tr").first
+    first_row = page.all(:xpath, '//table[@id="topics-table"]/tbody/tr').first
     expect(first_row).to have_content('hello thread')
     expect(first_row).to_not have_content('mentioned')
 
@@ -127,14 +127,14 @@ RSpec.describe "Creating and viewing topics", type: :system do
     visit '/'
 
     expect(page).to have_selector('h1', text: 'topics')
-    first_row = page.all(:xpath, "//table/tbody/tr").first
+    first_row = page.all(:xpath, '//table[@id="topics-table"]/tbody/tr').first
     expect(first_row).to have_content('hello thread')
     expect(first_row).to have_content('mentioned')
 
     click_on '@s'
 
     expect(page).to have_selector('h1', text: "topics you've been mentioned in")
-    first_row = page.all(:xpath, "//table/tbody/tr").first
+    first_row = page.all(:xpath, '//table[@id="topics-table"]/tbody/tr').first
     expect(first_row).to have_content('hello thread')
   end
 
@@ -151,7 +151,7 @@ RSpec.describe "Creating and viewing topics", type: :system do
     click_on 'back to topics'
 
     expect(page).to have_selector('h1', text: 'topics')
-    first_row = page.all(:xpath, "//table/tbody/tr").first
+    first_row = page.all(:xpath, '//table[@id="topics-table"]/tbody/tr').first
     expect(first_row).to have_content('this is a topic')
     expect(first_row).to have_content('starred')
 
@@ -197,22 +197,23 @@ RSpec.describe "Creating and viewing topics", type: :system do
 
   it 'allows marking all threads as read' do
     FactoryBot.create(:topic, title: 'this is my topic', author: poster, created_at: 1.day.ago)
-    FactoryBot.create(:topic, title: 'not my topic', author: viewer, created_at: Time.now)
+    FactoryBot.create(:topic, title: 'not my topic', author: viewer, created_at: 1.hour.ago)
 
     sign_in poster
 
     visit '/'
 
     expect(page).to have_selector('h1', text: 'topics')
-    first_row = page.all(:xpath, "//table/tbody/tr").first
+    first_row = page.all(:xpath, '//table[@id="topics-table"]/tbody/tr').first
     expect(first_row).to have_content('not my topic')
     expect(first_row).to have_content('(unread)')
 
     click_on 'mark all as read'
+    sleep 2
 
     expect(page).to have_selector('h1', text: 'topics')
-    first_row = page.all(:xpath, "//table/tbody/tr").first
+    first_row = page.all(:xpath, '//table[@id="topics-table"]/tbody/tr').first
     expect(first_row).to have_content('not my topic')
-    expect(first_row).to have_content('(unread)')
+    expect(first_row).to_not have_content('(unread)')
   end
 end
