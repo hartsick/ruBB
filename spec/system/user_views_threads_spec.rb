@@ -5,6 +5,7 @@ RSpec.describe "Creating and viewing topics", type: :system do
   let!(:viewer) { FactoryBot.create(:user, username: 'viewer', email: 'viewer@example.com', password: 'password1234') }
   
   before do
+    Capybara.default_max_wait_time = 5
     driven_by :selenium, using: :headless_chrome
   end
 
@@ -22,11 +23,11 @@ RSpec.describe "Creating and viewing topics", type: :system do
     expect(page).to have_content 'post your dogs'
     click_on 'back to topics'
 
-    expect(page).to have_content 'topics'
+    expect(page).to have_selector('h1', text: 'topics')
     expect(page).to have_content 'post your dogs'
-    
-    sign_out :user
 
+    sign_out poster
+  
     # Viewer
     sign_in viewer
     visit '/'
@@ -39,9 +40,8 @@ RSpec.describe "Creating and viewing topics", type: :system do
 
     click_on "back to topics"
 
+    expect(page).to have_selector('h1', text: 'topics')
     expect(page).to have_content(2)
-    
-    sign_out :user
   end
 
   it 'shows notifications for unread posts' do
@@ -49,10 +49,10 @@ RSpec.describe "Creating and viewing topics", type: :system do
     FactoryBot.create(:topic, title: 'but this is the one I made', author: viewer, created_at: Time.now)
 
     # Poster
-    login_as(poster)
+    sign_in poster
     visit '/'
 
-    expect(page).to have_content('topics')
+    expect(page).to have_selector('h1', text: 'topics')
     first_row = page.all(:xpath, "//table/tbody/tr").first
     expect(first_row).to have_content('but this is the one I made')
     expect(first_row).to have_content('(unread)')
@@ -60,34 +60,32 @@ RSpec.describe "Creating and viewing topics", type: :system do
     click_on 'but this is the one I made'
     click_on 'home'
 
-    expect(page).to have_content('topics')
+    expect(page).to have_selector('h1', text: 'topics')
     first_row = page.all(:xpath, "//table/tbody/tr").first
     expect(first_row).to have_content('but this is the one I made')
     expect(first_row).to_not have_content('(unread)')
-    
-    sign_out :user
 
+    sign_out poster
+    
     # Viewer
-    login_as(viewer)
+    sign_in viewer
     visit '/'
 
-    expect(page).to have_content('topics')
+    expect(page).to have_selector('h1', text: 'topics')
     click_on 'but this is the one I made'
     fill_in 'reply', with: 'hope you like notifications'
     click_on 'post'
     
-    sign_out :user
+    sign_out viewer
 
     # Poster
-    login_as(poster)
+    sign_in poster
     visit '/'
 
-    expect(page).to have_content('topics')
+    expect(page).to have_selector('h1', text: 'topics')
     first_row = page.all(:xpath, "//table/tbody/tr").first
     expect(first_row).to have_content('but this is the one I made')
     expect(first_row).to have_content('(unread)')
-    
-    sign_out :user
   end
 
   it 'shows notifications for mentions and allows accessing past mentions' do
@@ -100,9 +98,9 @@ RSpec.describe "Creating and viewing topics", type: :system do
     fill_in 'title', with: 'hello thread'
     fill_in 'body', with: "hey @viewer"
     click_on 'post'
-    
-    sign_out :user
 
+    sign_out poster
+    
     # Viewer
     sign_in viewer
     visit '/'
@@ -121,8 +119,8 @@ RSpec.describe "Creating and viewing topics", type: :system do
     first_row = page.all(:xpath, "//table/tbody/tr").first
     expect(first_row).to have_content('hello thread')
     expect(first_row).to_not have_content('mentioned')
-    
-    sign_out :user
+
+    sign_out viewer
 
     # Poster
     sign_in poster
@@ -138,8 +136,6 @@ RSpec.describe "Creating and viewing topics", type: :system do
     expect(page).to have_selector('h1', text: "topics you've been mentioned in")
     first_row = page.all(:xpath, "//table/tbody/tr").first
     expect(first_row).to have_content('hello thread')
-    
-    sign_out :user
   end
 
   it 'allows saving of threads of interest' do
@@ -154,7 +150,7 @@ RSpec.describe "Creating and viewing topics", type: :system do
 
     click_on 'back to topics'
 
-    expect(page).to have_content('topics')
+    expect(page).to have_selector('h1', text: 'topics')
     first_row = page.all(:xpath, "//table/tbody/tr").first
     expect(first_row).to have_content('this is a topic')
     expect(first_row).to have_content('starred')
@@ -170,8 +166,6 @@ RSpec.describe "Creating and viewing topics", type: :system do
     click_on '*s'
     expect(page).to have_content("topics you've starred")
     expect(page).to_not have_content('this is a topic')
-    
-    sign_out :user
   end
 
   it 'allows pinning of threads' do
@@ -199,30 +193,26 @@ RSpec.describe "Creating and viewing topics", type: :system do
 
     pinned_rows = page.all(:xpath, '//table[@id="pinned"]/tbody/tr')
     expect(pinned_rows.length).to eq(0)
-    
-    sign_out :user
   end
 
   it 'allows marking all threads as read' do
     FactoryBot.create(:topic, title: 'this is my topic', author: poster, created_at: 1.day.ago)
     FactoryBot.create(:topic, title: 'not my topic', author: viewer, created_at: Time.now)
 
-    login_as(poster)
+    sign_in poster
 
     visit '/'
 
-    expect(page).to have_content('topics')
+    expect(page).to have_selector('h1', text: 'topics')
     first_row = page.all(:xpath, "//table/tbody/tr").first
     expect(first_row).to have_content('not my topic')
     expect(first_row).to have_content('(unread)')
 
     click_on 'mark all as read'
 
-    expect(page).to have_content('topics')
+    expect(page).to have_selector('h1', text: 'topics')
     first_row = page.all(:xpath, "//table/tbody/tr").first
     expect(first_row).to have_content('not my topic')
     expect(first_row).to have_content('(unread)')
-
-    sign_out :user
   end
 end
