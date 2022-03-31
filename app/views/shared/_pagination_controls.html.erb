@@ -1,0 +1,8 @@
+<% link_classes = [] unless local_assigns.has_key?(:link_classes) %>
+
+<% if @page_number > 0 %>
+    <%= link_to '< newer', topics_path(page: @page_number - 1), class: "#{link_classes.join(' ')} inline-block" %>
+<% end %>
+<% if @page_number < @total_pages %>
+    <%= link_to 'older >', topics_path(page: @page_number + 1), class: "#{link_classes.join(' ')} inline-block" %>
+<% end %>

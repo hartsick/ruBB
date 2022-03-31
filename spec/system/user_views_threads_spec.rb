@@ -54,11 +54,21 @@ RSpec.describe "Creating and viewing topics", type: :system do
     expect(page).to have_content ('1-100 of 105')
     expect(page.all(:xpath, '//table[@id="topics-table"]/tbody/tr').length).to eq(100)
     
-    click_on 'older topics'
+    within '#table-frontmatter' do
+      expect(page).to_not have_content('newer')
+      click_on 'older'
+    end
     
     expect(page).to have_selector('h1', text: 'topics')
     expect(page).to have_content('101-105 of 105')
     expect(page.all(:xpath, '//table[@id="topics-table"]/tbody/tr').length).to eq(5)
+
+    within 'footer' do
+      expect(page).to_not have_content('older')
+      click_on 'newer'
+    end
+    expect(page).to have_selector('h1', text: 'topics')
+    expect(page).to have_content ('1-100 of 105')
   end
 
   it 'shows notifications for unread posts' do
