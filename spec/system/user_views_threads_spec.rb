@@ -196,7 +196,9 @@ RSpec.describe "Creating and viewing topics", type: :system do
     visit '/'
     
     click_on 'this is a topic'
-    click_on 'pin'
+    accept_alert do
+      click_on 'pin'
+    end
     click_on 'back to topics'
 
     expect(page).to have_selector('h1', text: 'topics')
@@ -207,7 +209,9 @@ RSpec.describe "Creating and viewing topics", type: :system do
       click_on 'this is a topic'
     end
 
-    click_on 'unpin'
+    accept_alert do
+      click_on 'unpin'
+    end
     click_on 'back to topics'
 
     pinned_rows = page.all(:xpath, '//table[@id="pinned"]/tbody/tr')
