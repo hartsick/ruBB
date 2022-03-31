@@ -16,4 +16,11 @@ module TopicHelper
 
         post_body.gsub(UserMention.format_username_regex) {|mention| "<span class='font-bold'>#{mention}</span>" }.html_safe
     end
+    
+    def page_counter(total_amount, page, items_per_page)
+        start_count = (page * items_per_page) + 1
+        end_count = (page + 1) * items_per_page
+
+        "#{start_count}-#{[total_amount,end_count].min} of #{total_amount}"
+    end
 end

@@ -44,6 +44,23 @@ RSpec.describe "Creating and viewing topics", type: :system do
     expect(page).to have_content(2)
   end
 
+  it 'supports pagination' do
+    FactoryBot.create_list(:topic, 105)
+
+    sign_in poster
+    visit '/'
+
+    expect(page).to have_selector('h1', text: 'topics')
+    expect(page).to have_content ('1-100 of 105')
+    expect(page.all(:xpath, '//table[@id="topics-table"]/tbody/tr').length).to eq(100)
+    
+    click_on 'older topics'
+    
+    expect(page).to have_selector('h1', text: 'topics')
+    expect(page).to have_content('101-105 of 105')
+    expect(page.all(:xpath, '//table[@id="topics-table"]/tbody/tr').length).to eq(5)
+  end
+
   it 'shows notifications for unread posts' do
     FactoryBot.create(:topic, title: 'this is a topic', author: poster, created_at: 1.day.ago)
     FactoryBot.create(:topic, title: 'but this is the one I made', author: viewer, created_at: 1.hour.ago)
