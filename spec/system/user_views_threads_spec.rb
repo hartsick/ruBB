@@ -76,6 +76,7 @@ RSpec.describe "Creating and viewing topics", type: :system do
     fill_in 'reply', with: 'hope you like notifications'
     click_on 'post'
     
+    expect(page).to have_content('hope you like notifications')
     sign_out viewer
 
     # Poster
@@ -99,8 +100,9 @@ RSpec.describe "Creating and viewing topics", type: :system do
     fill_in 'body', with: "hey @viewer"
     click_on 'post'
 
+    expect(page).to have_content('hey @viewer')
     sign_out poster
-    
+
     # Viewer
     sign_in viewer
     visit '/'
@@ -209,7 +211,7 @@ RSpec.describe "Creating and viewing topics", type: :system do
     expect(first_row).to have_content('(unread)')
 
     click_on 'mark all as read'
-    sleep 2
+    sleep 1
 
     expect(page).to have_selector('h1', text: 'topics')
     first_row = page.all(:xpath, '//table[@id="topics-table"]/tbody/tr').first
