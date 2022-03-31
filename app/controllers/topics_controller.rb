@@ -1,8 +1,15 @@
 class TopicsController < ApplicationController
     after_action :log_topic_view, only: %i[show create update]
 
+    TOPICS_PER_PAGE = 100
+
     def index
-        @topics = Topic.all.list_view.by_most_recent_post
+        @total_pages = (Topic.count / TOPICS_PER_PAGE).ceil
+        @page_number = params.fetch(:page, 0).to_i
+
+        @topics = Topic.list_view.by_most_recent_post.offset(@page_number * TOPICS_PER_PAGE).limit(TOPICS_PER_PAGE)
+        raise ActionController::RoutingError, 'Not Found' if @page_number > 0 && @topics.count.zero?
+
         setup_for_topics!(@topics)
     end
 

@@ -35,8 +35,16 @@
     </table>
 </details>
 
-<div class="flex flex-row-reverse">
+<div class="flex justify-between">
+    <div class="text-sm text-primary-100 inline-block align-bottom"><%= page_counter(Topic.count, @page_number, TopicsController::TOPICS_PER_PAGE) %></div>
     <%= button_to "mark all as read", mark_as_read_path, form_class: "inline-block", class: "btn-sm bg-primary-200" %>
 </div>
 
 <%= render 'table', topics: @topics, topic_follows: @topic_follows, topic_views: @topic_views, mentions: @mentions %>
+
+<% if @page_number > 0 %>
+    <%= link_to '< newer topics', topics_path(page: @page_number - 1), class: 'my-3 inline-block link--light' %>
+<% end %>
+<% if @page_number < @total_pages %>
+    <%= link_to 'older topics >', topics_path(page: @page_number + 1), class: 'my-3 inline-block link--light' %>
+<% end %>
