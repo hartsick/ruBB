@@ -11,8 +11,9 @@ gem 'devise_invitable', '~> 2.0.0'
 gem 'sentry-ruby'
 gem 'sentry-rails'
 gem 'sprockets-rails'
-gem 'jsbundling-rails'
+gem "importmap-rails", "~> 1.0"
 gem 'turbo-rails'
+gem 'stimulus-rails'
 gem 'tailwindcss-rails'
 
 gem 'bootsnap', '>= 1.4.4', require: false
