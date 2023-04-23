@@ -11,13 +11,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: colors.zinc,
-        secondary: colors.zinc,
-        emerald: colors.emerald,
-        rose: colors.rose,
-        orange: colors.orange,
-        violet: colors.violet,
-        sky: colors.sky,
+        primary: colors.green,
+        secondary: colors.yellow,
       },
     },
   },
