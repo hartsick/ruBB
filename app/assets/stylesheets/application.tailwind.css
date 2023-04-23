@@ -7,19 +7,19 @@
         @apply py-1 px-2 rounded-sm bg-primary-200;
     }
     .btn:hover {
-        @apply bg-secondary-100 cursor-pointer;
+        @apply bg-secondary-100;
     }
     .btn-cta {
         @apply py-1 px-2 rounded-sm bg-secondary-100;
     }
     .btn-cta:hover {
-        @apply bg-secondary-200 cursor-pointer;
+        @apply bg-secondary-200;
     }
     .btn-sm {
         @apply py-0.5 px-1 rounded-sm text-sm bg-primary-200;
     }
     .btn-sm:hover {
-        @apply bg-secondary-100 cursor-pointer;
+        @apply bg-secondary-100;
     }
     
     .link {
@@ -37,4 +37,14 @@
     .link--light:hover {
         @apply underline text-primary-400 bg-primary-900 px-1; 
     }
+}
+
+body {
+    cursor: url(flower_cursor.png), auto;
+}
+a, button {
+    cursor: url(flower_cursor.png), pointer;
+}
+table a:hover {
+    text-decoration: underline;
 }
