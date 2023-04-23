@@ -41,6 +41,12 @@ I've been running the forum at very low cost on Heroku (was free until database 
 
 ## Getting started
 
+## Prereqs
+
+* Ruby (>= 3.0) & bundler
+* Postgres
+* Node and yarn
+
 ## Development
 
 A development-specific Procfile is located at `Procfile.dev`. To run all processes locally, run:
