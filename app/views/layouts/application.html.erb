@@ -16,22 +16,22 @@
 
   <body class="h-full">
     <nav class="w-full bg-primary-200 py-1 px-1 flex justify-between">
-      <%= link_to 'home', root_path, class: 'link' %>
+      <%= link_to 'home', root_path, class: 'link--dark' %>
       <div>
       <% if user_signed_in? %>
-          <%= link_to 'directory', user_directory_path, class: 'px-1 link' %>
-          <%= link_to '*s', my_starred_path, class: 'px-1 link' %>
-          <%= link_to '@s', my_mentions_path, class: 'px-1 link' %>
-          <%= link_to 'my profile', my_profile_path, class: 'px-1 link' %>
-          <%= link_to "sign out", destroy_user_session_path, method: :delete, class: "px-1 link", data: { turbo_method: "delete" } %>
+          <%= link_to 'directory', user_directory_path, class: 'px-1 link--dark' %>
+          <%= link_to '*s', my_starred_path, class: 'px-1 link--dark' %>
+          <%= link_to '@s', my_mentions_path, class: 'px-1 link--dark' %>
+          <%= link_to 'my profile', my_profile_path, class: 'px-1 link--dark' %>
+          <%= link_to "sign out", destroy_user_session_path, method: :delete, class: "px-1 link--dark", data: { turbo_method: "delete" } %>
         <% else %>
-          <%= link_to "sign in", new_user_session_path, class: 'link' %>
+          <%= link_to "sign in", new_user_session_path, class: 'link--dark' %>
         <% end %>
       </div>
     </nav>
     <div class="w-full snow">
-      <p class="px-1 bg-secondary-200 text-black"><%= notice %></p>
-      <p class="px-1 bg-secondary-100 text-black"><%= alert %></p>
+      <p class="px-1 bg-secondary-800 text-white"><%= notice %></p>
+      <p class="px-1 bg-secondary-900 text-white"><%= alert %></p>
     </div>
     <div class="py-5 px-3">
       <%= yield %>

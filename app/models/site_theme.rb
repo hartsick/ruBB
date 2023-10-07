@@ -1,14 +1,11 @@
 class SiteTheme
     def self.pick_color(number)
         color_wheel = %w[
-            bg-fuchsia-100
-            bg-orange-100
-            bg-yellow-100
-            bg-lime-100
-            bg-teal-100
-            bg-lime-100
-            bg-yellow-100
-            bg-orange-100
+            bg-amber-600
+            bg-amber-500
+            bg-amber-400
+            bg-amber-300
+            bg-amber-200
         ]
 
         index = number % color_wheel.length

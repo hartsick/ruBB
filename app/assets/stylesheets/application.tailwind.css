@@ -1,3 +1,5 @@
+@import "./cursors.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,31 +9,39 @@
         @apply py-1 px-2 rounded-sm bg-primary-200;
     }
     .btn:hover {
-        @apply bg-secondary-100;
+        @apply bg-secondary-900 text-white;
     }
     .btn-cta {
-        @apply py-1 px-2 rounded-sm bg-secondary-100;
+        @apply py-1 px-2 rounded-sm bg-secondary-900 text-white;
     }
     .btn-cta:hover {
-        @apply bg-secondary-200;
+        @apply bg-secondary-700 text-white;
     }
     .btn-sm {
         @apply py-0.5 px-1 rounded-sm text-sm bg-primary-200;
     }
     .btn-sm:hover {
-        @apply bg-secondary-100;
+        @apply bg-secondary-900 text-white;
     }
     
     .link {
-        @apply underline text-black;
+        @apply underline text-white;
     }
     
     .link:hover {
         @apply text-primary-400;
     }
 
+    .link--dark {
+        @apply underline text-secondary-900;
+    }
+    
+    .link--dark:hover {
+        @apply underline text-secondary-700;
+    }
+
     .link--light {
-        @apply underline text-black bg-primary-400 px-1; 
+        @apply underline text-white bg-primary-400 px-1; 
     }
 
     .link--light:hover {
@@ -39,12 +49,6 @@
     }
 }
 
-body {
-    cursor: url(flower_cursor.png), auto;
-}
-a, button {
-    cursor: url(flower_cursor.png), pointer;
-}
 table a:hover {
     text-decoration: underline;
 }
