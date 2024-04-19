@@ -1,6 +1,6 @@
 <% title("Confirm account") %>
 
-<h1 class="text-lg mb-1 px-1 inline-block bg-secondary-700 text-white">resend confirmation instructions</h1>
+<h1 class="text-lg mb-1 px-1 inline-block bg-secondary-300">resend confirmation instructions</h1>
 
 <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>

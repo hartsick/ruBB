@@ -1,6 +1,6 @@
 <% title("Accept invite") %>
 
-<h1 class="text-lg mb-1 px-1 inline-block bg-secondary-700 text-white">accept invite</h1>
+<h1 class="text-lg mb-1 px-1 inline-block bg-secondary-300">accept invite</h1>
 
 <%= form_for(resource, as: resource_name, url: invitation_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
