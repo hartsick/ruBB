@@ -25,7 +25,7 @@
     }
     
     .link {
-        @apply underline text-white;
+        @apply underline;
     }
     
     .link:hover {
@@ -33,15 +33,15 @@
     }
 
     .link--dark {
-        @apply underline text-secondary-900;
+        @apply underline text-black;
     }
     
     .link--dark:hover {
-        @apply underline text-secondary-700;
+        @apply underline text-black bg-secondary-200;
     }
 
     .link--light {
-        @apply underline text-white bg-primary-400 px-1; 
+        @apply underline text-black bg-primary-400 px-1; 
     }
 
     .link--light:hover {

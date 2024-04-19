@@ -1,12 +1,12 @@
 <% title("Directory") %>
 
 <div class="flex justify-between">
-    <h1 class="text-lg mb-1 px-1 inline-block bg-secondary-700 text-white">the poster list</h1>
+    <h1 class="text-lg mb-1 px-1 inline-block bg-secondary-300">the poster list</h1>
 </div>
 
 <table class="w-full my-3">
     <thead>
-        <tr class="py-1 bg-primary-300 border-b-2 border-secondary-900 text-left">
+        <tr class="py-1 bg-primary-300 border-b-2 border-secondary-100 text-left">
             <th class="pl-3 w-6/12">username</th>
             <th class="px-3 hidden md:table-cell md:w-4/12">invited by</th>
             <th class="px-3 w-6/12 md:w-4/12">joined</th>
@@ -14,7 +14,7 @@
     </thead>
     <tbody>
         <% @users.each_with_index do |user, index| %>
-            <tr class="py-1 border-b-2 border-secondary-900 <%= SiteTheme.pick_color(index) %>">
+            <tr class="py-1 border-b-2 border-secondary-100 <%= SiteTheme.pick_color(index) %>">
                 <td class="px-3 pl-3 w-6/12"><%= link_to user.username, profile_path(user) %></td>
                 <% if user.invited_by.present? %>
                     <td class="px-3 hidden md:table-cell md:w-4/12">

@@ -1,7 +1,7 @@
 <% title("@#{@profile.user.username}'s Profile") %>
 
 <% if Rails.configuration.x.invitations.enabled && current_user.has_invites_available? %>
-    <div class="py-1 px-3 mb-3 bg-secondary-800 text-white">
+    <div class="py-1 px-3 mb-3 bg-secondary-200">
         hello, you have an invite available! care to <%= link_to 'invite someone', new_user_invitation_path, class: 'link' %>?
     </div>
 <% end %>

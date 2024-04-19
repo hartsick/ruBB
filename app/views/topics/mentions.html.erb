@@ -1,10 +1,10 @@
 <% title("Mentions") %>
 
 <div class="flex justify-between">
-    <h1 class="text-lg mb-1 px-1 inline-block bg-secondary-700 text-white">topics you've been mentioned in</h1>
+    <h1 class="text-lg mb-1 px-1 inline-block bg-secondary-300">topics you've been mentioned in</h1>
     <%= link_to "new topic", new_topic_path, class: "btn inline-block" %>
 </div>
 
 <%= render 'table', topics: @topics, topic_follows: @topic_follows, topic_views: @topic_views, mentions: @mentions %>
 
-<%= link_to "back to topics", topics_path, class: "link--light mb-3" %>
+<%= link_to "back to topics", topics_path, class: "link mb-3" %>
